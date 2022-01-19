@@ -1,0 +1,112 @@
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+
+$maineColor: #bada55;
+$gold: #AF9D6B;
+$dark: #212529;
+$danger: #dc3545;
+
+$blue: #0d6efd;
+$blue-300: mix(white, $blue, 40%) !default;
+.bg-blue {
+  background-color: $blue-300;
+}
+
+.card {
+  &-akb {
+    border-radius: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.form-control, .form-select {
+  border-radius: 0;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+
+  &:focus, {
+    box-shadow: inset 0 -1px 0 $gold;
+
+  }
+}
+
+.has-error {
+  color: $danger;
+
+  .form-control, .form-select {
+    @extend .is-invalid;
+    outline: none!important;
+  }
+}
+
+.btn {
+  border-radius: 0;
+  border: 0;
+
+  &-ndrt {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    color: white;
+  }
+
+
+  &:focus {
+    outline: none !important;
+  }
+
+  &-gold {
+    color: white;
+    background-color: $gold;
+
+    &:hover, &:focus {
+      color: white;
+      background-color: $dark;
+    }
+
+  }
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: $dark;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
