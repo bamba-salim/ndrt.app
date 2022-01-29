@@ -1,17 +1,14 @@
 import axios from "axios";
-import {DIST_URL, LOCAL_URL} from "../ressources/utils/const-utils";
+import {sessionUser} from "./Routing/auth.service";
 
 export const ws = axios.create({
-    baseURL: SWITCH_API_URL()
+    baseURL: `${process.env.REACT_APP_API_URL}`,
+    headers: {'session_user': sessionUser, 'content-type': 'multipart/form-data'}
+
 })
 
+
 export default ws
-
-function SWITCH_API_URL() {
-    return window.location.hostname === 'localhost' ? LOCAL_URL : DIST_URL
-
-}
-
 
 export const GET = async (url) => {
     return await ws.get(url)
@@ -23,10 +20,12 @@ export const GET = async (url) => {
 }
 
 export const POST = (url, data) => {
-    return ws.post(url, data)
+    return ws.post(url, {data})
         .then(res => {
             if (res.data.error) console.log(res.data)
             return res.data
         })
         .catch(err => console.log(err))
 }
+
+

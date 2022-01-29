@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {I_CLOSE} from "../../ressources/utils/icon-utils";
+import {I_CLOSE} from "../../ressources/utils/icon.utils";
 
 class ModalTpl extends Component {
 

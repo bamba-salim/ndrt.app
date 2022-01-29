@@ -1,12 +1,12 @@
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Rooter from "./services/Rooter";
+import RouterService from "./services/Routing/router.service";
 import './ressources/styles/App.scss';
 
 function App() {
     return (
         <>
-            <Rooter/>
+            <RouterService/>
         </>
 
     );

@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
+import NavBar from "../atoms/nav-bar";
+import {Navigate} from "react-router-dom";
+import LodashUtils from "../../ressources/utils/lodash.utils";
 
 class ViewsTpl extends Component {
 
-
-
     render() {
+       if (LodashUtils.isset(this.props.access)? !this.props.access : false) return <Navigate to={LodashUtils.isset(this.props.target) ? this.props.target : '/' }/>;
         return (
             <>
                 <header>
-                    // create navbar
+                    <NavBar/>
                 </header>
-                    <main className={this.props.classname}>
-                        {this.props.children}
-                    </main>
+                <main className={`py-3 ${this.props.classname}`}>
+                    {this.props.children}
+                </main>
                 <footer>
-                    // create footer
+                    FOOTER
                 </footer>
             </>
         );
