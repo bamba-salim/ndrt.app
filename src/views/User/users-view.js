@@ -14,7 +14,6 @@ export default class UsersView extends Component {
     }
 
 
-
     componentDidMount() {
         UserService.fetchAllUsers().then(res => {
             this.setState({users: res.userList});

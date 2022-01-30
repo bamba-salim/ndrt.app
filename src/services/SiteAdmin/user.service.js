@@ -21,8 +21,8 @@ export default class UserService {
         return POST('sign-in', {loginFormBean: values})
     }
 
-    static signOut() {
-        return GET('sign-out')
+    static signUp(values) {
+        return POST('sign-up',{signUpFormBean: values})
     }
 
     static test() {

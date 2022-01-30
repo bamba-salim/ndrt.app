@@ -6,19 +6,19 @@ import UserHomeView from "../../views/User/user-home-view";
 import UserSingleSubView from "../../views/User/sub-view/user-single-sub-view";
 import UserUpdateSubView from "../../views/User/sub-view/user-update-sub-view";
 import LoginView from "../../views/Login/login-view";
-import AuthService, {IsAdmin, IsUnLoggedIn} from "./auth.service";
+import AuthService from "./auth.service";
 
 export default class RouterService extends Component {
     render() {
         return (
             <Routes>
                 <Route path="/" element={<HomeView/>}/>
-                <Route path="/users" element={<UsersView />}/>
-                <Route path="/user" element={<UserHomeView/>}>
+                <Route path="/users" element={<UsersView access={AuthService.IsAdmin} />}/>
+                <Route path="/user" element={<UserHomeView />}>
                     <Route path=":idUser" element={<UserSingleSubView/>}/>
                     <Route path=":idUser/update" element={<UserUpdateSubView/>}/>
                 </Route>
-                <Route path="/login" element={<LoginView />}/>
+                <Route path="/login" element={<LoginView access={AuthService.IsUnLoggedIn} />}/>
 
 
             </Routes>

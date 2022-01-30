@@ -35,8 +35,10 @@ function SignInForm() {
     })
     return (
         <>
+            <h2 className="text-center my-2">Connexion</h2>
+            <hr/>
             <form onSubmit={formik.handleSubmit}>
-                <div className="row row-cols-1 row-cols-md-2">
+                <div className="row row-cols-1">
                     <div
                         className={`col mb-3  ${(formik.errors.login && formik.touched.login) || loginErrors.login && 'has-error'}`}>
                         <label htmlFor="login" className="form-label">Identifiant *</label>

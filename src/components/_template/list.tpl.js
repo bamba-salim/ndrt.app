@@ -2,11 +2,9 @@ import React, {useState} from 'react';
 import BlockCmn from "../_commons/block-cmn";
 import Pagination from "../atoms/pagination";
 
-const ListTpl = ({component: Component, list = []}) => {
+const ListTpl = ({component: Component, list = [], item_per_page = 10}) => {
 
-        const [loading, setLoading] = useState(false);
         const [current_page, setCurrent_page] = useState(1);
-        const [item_per_page, setItem_per_page] = useState(10);
 
         function changePage(number) {
             setCurrent_page(number);
