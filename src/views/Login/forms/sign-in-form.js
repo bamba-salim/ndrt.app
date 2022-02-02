@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import UserService from "../../../services/SiteAdmin/user.service";
 import * as Yup from "yup";
 import {useFormik} from "formik";
-import BlockCmn from "../../../components/_commons/block-cmn";
 import LodashUtils from "../../../ressources/utils/lodash.utils";
 
 
@@ -40,7 +39,7 @@ function SignInForm() {
             <form onSubmit={formik.handleSubmit}>
                 <div className="row row-cols-1">
                     <div
-                        className={`col mb-3  ${(formik.errors.login && formik.touched.login) || loginErrors.login && 'has-error'}`}>
+                        className={`col mb-3  ${((formik.errors.login && formik.touched.login) || loginErrors.login) && 'has-error'}`}>
                         <label htmlFor="login" className="form-label">Identifiant *</label>
                         <input type="text" className="form-control" id="login" name="login" placeholder="Identifiant"
                                onChange={formik.handleChange} value={formik.values.name}
@@ -48,7 +47,7 @@ function SignInForm() {
                         <p>{((formik.errors.login && formik.touched.login) && formik.errors.login) || loginErrors.login}</p>
                     </div>
                     <div
-                        className={`col mb-3  ${((formik.errors.password && formik.touched.password)) || loginErrors.password && 'has-error'}`}>
+                        className={`col mb-3  ${(((formik.errors.password && formik.touched.password)) || loginErrors.password) && 'has-error'}`}>
                         <label htmlFor="password" className="form-label">Mot de passe *</label>
                         <input type="password" className="form-control" id="password" name="password"
                                placeholder="Mot de passe"

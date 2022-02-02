@@ -10,7 +10,7 @@ import {
     faUser,
     faTimes,
     faChevronRight,
-    faChevronLeft
+    faChevronLeft, faPen, faTrash, faUserShield, faChevronDown, faChevronUp
 } from "@fortawesome/free-solid-svg-icons";
 
 export default class ICON {
@@ -23,6 +23,11 @@ export default class ICON {
     static CLOSE = (<FontAwesomeIcon icon={faTimes}/>);
     static NAV_LEFT = (<FontAwesomeIcon icon={faChevronLeft}/>);
     static NAV_RIGHT = (<FontAwesomeIcon icon={faChevronRight}/>);
+    static NAV_UP = (<FontAwesomeIcon icon={faChevronUp}/>);
+    static NAV_DOWN = (<FontAwesomeIcon icon={faChevronDown}/>);
+    static EDIT = (<FontAwesomeIcon icon={faPen}/>)
+    static DELETE = (<FontAwesomeIcon icon={faTrash}/>)
+    static ADMIN = (<FontAwesomeIcon icon={faUserShield}/>)
 }
 
 

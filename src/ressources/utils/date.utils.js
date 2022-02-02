@@ -11,8 +11,17 @@ export default class DateUtils {
         return DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DDMMMYYYY);
     }
 
+    static toSql = (date) => {
+        return DateTime.fromSeconds(date).setLocale("fr").toISO()
+    }
+
     static now = () => {
-        return DateTime.now().setLocale("fr").toFormat(this.FORMAT.toSQL);
+        return DateTime.now().setLocale("fr").toFormat("y-LL-dd");
+    }
+
+
+    static addDays(date, days) {
+        return DateTime.fromISO(date).plus({days: days}).toFormat("y-LL-dd")
     }
 
 }

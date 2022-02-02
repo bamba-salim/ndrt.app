@@ -1,17 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import UserService from "../../../services/SiteAdmin/user.service";
+import UserService from "../../../../services/SiteAdmin/user.service";
+import {useParams} from "react-router-dom";
+import se from "react-datepicker";
 
 
-function UpdateUserForm({user}) {
+function UpdateUserForm() {
 
-    const initialValues = user
+    const {idUser} = useParams()
+    const [user, setUser] = useState({})
+    const [initialValues, setInitialValues] = useState({})
 
-    const onSubmit = values => {
-        UserService.updateUser(values).then(res => {
-            values.log(formik)
-        })
+    useEffect(() => {
+        UserService.fetchUser(idUser).then(res => setUser(res.user))
+    }, [idUser])
+
+
+
+    const onSubmit = values => { // todo: update user
+
+        // UserService.updateUser(values).then(res => {
+        //     console.log(res)
+        // })
         console.log("form data", values)
     }
     const validationSchema = Yup.object({
@@ -22,14 +33,13 @@ function UpdateUserForm({user}) {
     })
 
     const formik = useFormik({
-        initialValues,
+        initialValues: user,
         onSubmit,
         validationSchema
     })
 
     return (
         <>
-            {JSON.stringify(user)}
             <form onSubmit={formik.handleSubmit}>
                 <div className="row row-cols-1 row-cols-md-2">
                     <div className="col mb-3">

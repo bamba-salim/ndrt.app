@@ -8,6 +8,9 @@ export default class LodashUtils {
     static isset = (item) => {
         return !_.isUndefined(item)
     }
+    static isNull = item => {
+        return _.isNull(item);
+    }
 }
 
 

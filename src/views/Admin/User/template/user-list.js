@@ -1,6 +1,7 @@
 import React from "react";
-import DateUtils from "../../../ressources/utils/date.utils";
+import DateUtils from "../../../../ressources/utils/date.utils";
 import {Link} from "react-router-dom";
+import ICON from "../../../../ressources/utils/icon.utils";
 
 const UserList = ({list}) => {
     return <>
@@ -21,12 +22,13 @@ const UserList = ({list}) => {
                 <div className="col">{user.email} </div>
                 <div className="col">{user.firstname} </div>
                 <div className="col">{user.lastname}</div>
-                <div className="col">{user.isAdmin ? "admin" : " - "}</div>
+                <div className="col">{user.isAdmin ? ICON.ADMIN : " - "}</div>
                 <div className="col">{DateUtils.formated(user.createDate)}</div>
                 <div className="col">{DateUtils.formated(user.updateDate)}</div>
-                <div className="col text-end">
-                    <Link to={`/user/${user.id}`}>View</Link>
-                    <Link to={`/user/${user.id}/update`}>update</Link>
+                <div className="col text-end ">
+                    <Link className="mx-1" to={`${user.id}`}><span className="text-black">{ICON.USER}</span></Link>
+                    <Link className="mx-1" to={`${user.id}/edit`}><span className="text-black">{ICON.EDIT}</span></Link>
+                    <Link className="mx-1" to={`${user.id}/delete`}><span className="text-black">{ICON.DELETE}</span></Link>
                 </div>
             </div>
         ))}

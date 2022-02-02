@@ -7,9 +7,9 @@ class SubViewTpl extends Component {
             <div className="row row-cols-1 row-cols-md-2">
                 <div className={` ${this.props.photo ? "d-block" : 'd-none'} `}>picture</div>
                 <div className={` ${!this.props.photo ? "d-block" : 'd-none'} `}>
-                    <SubViewTitre titre={this.props.titre}/>
+                    <SubViewTitre classname={this.props.titreClassname} titre={this.props.titre}/>
                 </div>
-                <div className="col">{this.props.children}</div>
+                <div className={`col ${this.props.childrenClassname}`}>{this.props.children}</div>
             </div>
         );
     }

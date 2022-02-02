@@ -7,7 +7,6 @@ export const ws = axios.create({
 
 })
 
-
 export default ws
 
 export const GET = async (url) => {
@@ -26,6 +25,16 @@ export const POST = (url, data) => {
             return res.data
         })
         .catch(err => console.log(err))
+}
+
+export const PUT = (url, data) => {
+    return ws.put(url, {data})
+        .then(res => {
+            if (res.data.error) console.log(res.data)
+            return res.data
+        })
+        .catch(err => console.log(err))
+
 }
 
 

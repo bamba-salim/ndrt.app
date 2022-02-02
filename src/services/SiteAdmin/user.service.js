@@ -1,4 +1,4 @@
-import {GET, POST} from "../web.service";
+import {GET, POST, PUT} from "../web.service";
 
 export default class UserService {
     static fetchAllUsers = () => {
@@ -9,12 +9,8 @@ export default class UserService {
         return GET(`fetch-user/${idUser}`)
     }
 
-    static saveUser(values) {
-        return POST('sign-up', {loginFormBean: values})
-    }
-
     static updateUser(userData) {
-        return POST('update-user', {userDto: userData})
+        return POST('update-user', {userDto: userData}) // todo: a revoir
     }
 
     static signIn(values) {
@@ -25,11 +21,11 @@ export default class UserService {
         return POST('sign-up',{signUpFormBean: values})
     }
 
-    static test() {
-        return GET('test/1')
+    static deleteUser(idUser) {
+        return PUT('delete-user',{idUser: idUser})
     }
 
-    static testPost() {
-        return POST('test-post', {salut: 100})
+    static switchUserRole(idUser, isAdmin) {
+        return POST('switch-user-role', {idUser: idUser, role: isAdmin})
     }
 }

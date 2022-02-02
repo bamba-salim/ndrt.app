@@ -1,12 +1,7 @@
 import React from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import ICON from "../../ressources/utils/icon.utils";
-import AuthService, {
-    IsAdmin,
-    IsLoggedIn,
-    IsUnLoggedIn,
-    ShowIf
-} from "../../services/Routing/auth.service";
+import AuthService, {ShowIf} from "../../services/Routing/auth.service";
 
 
 const NavBar = () => {
@@ -32,13 +27,16 @@ const NavBar = () => {
 
                     <div className="navbar-nav">
                         <Link className="nav-link active" to="/">Home</Link>
-                        <Link className={"nav-link active " + ShowIf(AuthService.IsAdmin)} to="/users">Les Utilisateurs</Link>
 
                     </div>
 
                     <nav className="col nav justify-content-end text-end">
-                        <Link className={`nav-link active ` + ShowIf(IsUnLoggedIn) } to="/login">{ICON.LOGIN}</Link>
-                        <Link to="#" className={`btn nav-link active ` + ShowIf(IsLoggedIn)} onClick={() => logout()}>{ICON.LOGOUT}</Link>
+                        <Link className={"nav-link active " + ShowIf(AuthService.IsAdmin)} to="/admin">Gestion du
+                            site</Link>
+                        <Link className={`nav-link active ` + ShowIf(AuthService.IsUnLoggedIn)}
+                              to="/login">{ICON.LOGIN}</Link>
+                        <Link to="#" className={`btn nav-link active ` + ShowIf(AuthService.IsLoggedIn)}
+                              onClick={() => logout()}>{ICON.LOGOUT}</Link>
 
 
                     </nav>

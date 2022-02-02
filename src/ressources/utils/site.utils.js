@@ -7,4 +7,9 @@ export default class SiteUtils {
     static isNumeric(int) {
         return !isNaN(int - parseFloat(int));
     }
+
+    static isEmptyStr(str) {
+        return (!str || str.length === 0 );
+    }
+
 }

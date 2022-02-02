@@ -1,15 +1,15 @@
 import React from 'react';
 import {useOutletContext} from "react-router-dom";
-import SubViewTpl from "../../../components/_template/sub.view.tpl";
+import ViewsTpl from "../../../components/_template/views-tpl";
 
 const UserSingleSubView = () => {
 
     const user = useOutletContext()
 
     return (
-        <SubViewTpl titre={user.username}>
+        <ViewsTpl titre={user.username} {...this.props}>
             {JSON.stringify(user)}
-        </SubViewTpl>
+        </ViewsTpl>
     );
 };
 
