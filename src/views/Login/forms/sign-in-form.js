@@ -3,9 +3,11 @@ import UserService from "../../../services/SiteAdmin/user.service";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import LodashUtils from "../../../ressources/utils/lodash.utils";
+import {useNavigate} from "react-router-dom";
 
 
 function SignInForm() {
+    const navigate = useNavigate();
 
     const [loginErrors, setLoginErrors] = useState([]);
 
@@ -13,10 +15,12 @@ function SignInForm() {
 
         if(LodashUtils.isEmpty(loginErrors))  setLoginErrors([])
         UserService.signIn(values).then(res => {
-            if (res.error) setLoginErrors(res.error.message)
+            if (res.ERROR) setLoginErrors(res.ERROR.message)
             if (res.SUCCESS){
+                localStorage.setItem('success', res.SUCCESS.description)
 
                 localStorage.setItem('user', JSON.stringify(res.user))
+                navigate('/')
                 window.location.reload();
             }
         })

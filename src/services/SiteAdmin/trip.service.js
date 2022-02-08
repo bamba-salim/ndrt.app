@@ -2,11 +2,11 @@ import {GET, POST} from '../web.service'
 
 export default class TripService {
 
-    static fetchAllCities() {
-        return GET('fetch-all-cities')
-    }
+    static fetchAllCities = () => GET('fetch-all-cities')
 
-    static createTrip(values) {
-        return POST('create-trip', {tripDto: values})
-    }
+    static fetchAllTrip = () => GET('fetch-all-trip')
+
+    static createTrip = (values) => POST('create-trip', {tripDto: values})
+
+
 }

@@ -7,7 +7,6 @@ import TripService from "../../../../services/SiteAdmin/trip.service";
 import SiteUtils from "../../../../ressources/utils/site.utils";
 import DateUtils from "../../../../ressources/utils/date.utils";
 import ICON from "../../../../ressources/utils/icon.utils";
-import {ShowIf} from "../../../../services/Routing/auth.service";
 
 
 export default class AddCityTripForm extends Component {
@@ -19,6 +18,7 @@ export default class AddCityTripForm extends Component {
     }
 
     componentDidMount() {
+
         let countriesList = []
         let citiesList = []
         CountriesApi.fetchAllCountries().then(res =>
@@ -39,7 +39,6 @@ export default class AddCityTripForm extends Component {
 
 
     handleAddCity = (city) => {
-        console.log(city)
         if (city != null) {
             let cities = this.state.cities
             let c = {}
@@ -124,16 +123,14 @@ export default class AddCityTripForm extends Component {
 
     render() {
         return (
-            <BlockCmn classname={`border p-3 ${this.props.citiesErrors ? "has-error" : ''}`}>
+            <BlockCmn classname={`p-3`}>
                 <div className="mb-3">
-                    <h3 className="text-decoration-underline text-end text-uppercase">Les étapes du circuit</h3>
+                    <h3 className="text-decoration-underline text-end text-uppercase">Les étapes du séjour</h3>
                 </div>
                 <div className="mb-3">
                     <CreatableSelect onChange={(e) => this.handleAddCity(e)}
                                      options={this.state.citiesList} classname="form-select w-100 mb-3"
-                                     isSearchable
-                                     isClearable
-                                     placeholder="Ajouter une ville"/>
+                                     isSearchable isClearable placeholder="Ajouter une étape"/>
                 </div>
                 {this.state.cities.length > 0 && (
                     <div className="border px-2 py-3 row m-0">
@@ -149,12 +146,13 @@ export default class AddCityTripForm extends Component {
 
                                 {this.state.cities[0].isNew && (
                                     <Select className="" options={this.state.countriesList}
-                                            value={this.state.cities[0].country}
+                                            // value={this.state.cities[0].country}
                                             placeholder="Selectionner un pays" isSearchable required
                                             onChange={(event) => this.handleChangeCountry(event, 0)}/>
                                 )}
+                                {this.state.cities[0].country}
                                 {this.state.cities[0].id != null && (
-                                    <input type="text" id={`city_name_0`} value={this.state.cities[0].country}
+                                    <input type="text" id={`city_name_0`} value={this.state.cities[0].country ?? ""}
                                            readOnly={true} className="form-control"/>)}
 
                             </div>
@@ -164,11 +162,14 @@ export default class AddCityTripForm extends Component {
                                 <input id={`dateCity_0`} type="date" className="form-control"
                                        value={this.props.date.debut} readOnly={true}/>
                             </div>
+
+
                             <div className="com my-3 w-100">
                                 <label htmlFor="description_0" className="form-label">Infomations</label>
                                 <textarea value={this.state.cities[0].description} className="form-control"
                                           onChange={(e) => this.handleInfosChange(e, 0)}
-                                          name="description_0" id="description_0" rows="2" placeholder="Informations" required/>
+                                          name="description_0" id="description_0" rows="2" placeholder="Informations"
+                                           />
                             </div>
 
                         </div>
@@ -214,20 +215,20 @@ export default class AddCityTripForm extends Component {
                                     </div>
                                     <div className="col my-3 w-100">
 
-                                        <label htmlFor={`dateCity_${i}`}
-                                               className="label-control">Date d'étape: </label>
+                                        <label htmlFor={`dateCity_${i}`} className="label-control">Date d'étape: </label>
                                         <input id={`dateCity_${i}`} type="date" className="form-control"
                                                onChange={(e) => this.handleCityDateChange(e, i)}
                                                min={!SiteUtils.isEmptyStr(this.state.cities[i - 1].dateCity) ? DateUtils.addDays(this.state.cities[i - 1].dateCity, 1) : DateUtils.addDays(this.props.date.debut, 1)}
-                                               max={DateUtils.addDays(this.props.date.fin, -1)} value={city.dateCity}
+                                               max={this.props.date.fin} value={city.dateCity}
                                                required
                                         />
                                     </div>
                                     <div className="com my-3 w-100">
                                         <label htmlFor={`description_${i}`} className="form-label">Infomations</label>
                                         <textarea value={city.description} className="form-control"
-                                                  onChange={(e) => this.handleInfosChange(e, i)} required
-                                                  name={`description_${i}`} id={`description_${i}`} rows="2" placeholder="Informations"/>
+                                                  onChange={(e) => this.handleInfosChange(e, i)}
+                                                  name={`description_${i}`} id={`description_${i}`} rows="2"
+                                                  placeholder="Informations"/>
                                      </div>
                                 </div>
                                 <div className="col btn-group-vertical p-0">
@@ -248,10 +249,6 @@ export default class AddCityTripForm extends Component {
                         </span>
                     )
                 ))}
-                <div className="w-100 nav justify-content-end">
-                    <label
-                        className={`text-danger label-control ${ShowIf(this.props.citiesErrors)}`}>{this.props.citiesErrors}</label>
-                </div>
             </BlockCmn>
         );
     }

@@ -1,10 +1,13 @@
 import React from 'react';
+import {useParams} from "react-router-dom";
+import SubViewTpl from "../../../components/_template/sub.view.tpl";
 
 const GestionSingleTripSubView = () => {
+    const {id} = useParams();
     return (
-        <div>
+        <SubViewTpl titre={`Séjour # ${id}`}>
             
-        </div>
+        </SubViewTpl>
     );
 };
 

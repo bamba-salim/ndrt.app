@@ -13,8 +13,9 @@ export default class UserService {
         return POST('update-user', {userDto: userData}) // todo: a revoir
     }
 
-    static signIn(values) {
-        return POST('sign-in', {loginFormBean: values})
+    static signIn(userData) {
+        console.log(userData)
+        return POST('sign-in', {loginFormBean: userData})
     }
 
     static signUp(values) {

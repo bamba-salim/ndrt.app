@@ -2,11 +2,22 @@ import React, {Component} from 'react';
 import NavBar from "../atoms/nav-bar";
 import {Navigate} from "react-router-dom";
 import LodashUtils from "../../ressources/utils/lodash.utils";
+import NOTIFY from "../atoms/toast.tpl";
+
 
 class ViewsTpl extends Component {
 
+    componentDidMount() {
+        NOTIFY.SUCCESS();
+        NOTIFY.INFO()
+    }
+
+
+
+
     render() {
-       if (LodashUtils.isset(this.props.access)? !this.props.access : false) return <Navigate to={LodashUtils.isset(this.props.target) ? this.props.target : '/' }/>;
+        if (LodashUtils.isset(this.props.access) ? !this.props.access : false) return <Navigate
+            to={LodashUtils.isset(this.props.target) ? this.props.target : '/'}/>;
         return (
             <>
                 <header>

@@ -1,5 +1,3 @@
-import React from "react";
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faShoppingCart,
@@ -10,7 +8,7 @@ import {
     faUser,
     faTimes,
     faChevronRight,
-    faChevronLeft, faPen, faTrash, faUserShield, faChevronDown, faChevronUp
+    faChevronLeft, faPen, faTrash, faUserShield, faChevronDown, faChevronUp, faExclamationCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 export default class ICON {
@@ -28,6 +26,7 @@ export default class ICON {
     static EDIT = (<FontAwesomeIcon icon={faPen}/>)
     static DELETE = (<FontAwesomeIcon icon={faTrash}/>)
     static ADMIN = (<FontAwesomeIcon icon={faUserShield}/>)
+    static WARNING = (<FontAwesomeIcon icon={faExclamationCircle}/>)
 }
 
 

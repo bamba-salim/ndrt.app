@@ -12,7 +12,7 @@ function SignUpForm() {
 
         if (LodashUtils.isEmpty(loginErrors)) setLoginErrors([])
         UserService.signUp(values).then(res => {
-            if (res.error) setLoginErrors(res.error.data)
+            if (res.ERROR) setLoginErrors(res.ERROR.data)
             if (res.SUCCESS) {
                 localStorage.setItem('user', JSON.stringify(res.user))
                 window.location.reload();

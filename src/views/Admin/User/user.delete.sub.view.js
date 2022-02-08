@@ -10,7 +10,7 @@ const UserDeleteSubView = () => {
 
     function deleteUser() {
         UserService.deleteUser(idUser).then(res => {
-            if(res.error) alert(res.error.message)
+            if(res.ERROR) alert(res.ERROR.message)
             if(res.SUCCESS) {
                 // todo: navigate to list user
             }

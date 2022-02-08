@@ -9,6 +9,8 @@ const NavBar = () => {
 
     function logout() {
         localStorage.removeItem('user');
+        localStorage.setItem('info', 'Vous avez été déconnecté !')
+
         navigate('/')
         window.location.reload()
     }

@@ -13,7 +13,7 @@ const UserSwitchRoleSubView = () => {
 
     function switchUserole() {
         UserService.switchUserRole(idUser, !user.isAdmin).then(res => {
-            if(res.error) alert(res.error.message)
+            if(res.ERROR) alert(res.ERROR.message)
             if(res.SUCCESS) {
                 // todo: getUser()
             }

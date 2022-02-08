@@ -3,7 +3,7 @@ import {sessionUser} from "./Routing/auth.service";
 
 export const ws = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`,
-    headers: {'session_user': sessionUser, 'content-type': 'multipart/form-data'}
+    headers: {'session_user': sessionUser}
 
 })
 
@@ -19,7 +19,8 @@ export const GET = async (url) => {
 }
 
 export const POST = (url, data) => {
-    return ws.post(url, {data})
+    console.log(data)
+    return ws.post(url, {data}, { headers: { 'Content-Type': 'application/x-www-form-urlencoded'} })
         .then(res => {
             if (res.data.error) console.log(res.data)
             return res.data
