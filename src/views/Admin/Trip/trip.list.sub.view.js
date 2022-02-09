@@ -8,6 +8,10 @@ const TripListSubView = () => {
 
     const[trips, setTriipList] = useState();
 
+    const[pastTrips, setPassTrips] = useState([]);
+    const[currentTrips, setCurrentTrips] = useState([])
+    const[nextTrips, setNextTrips] = useState([])
+
     useEffect(() => {
         TripService.fetchAllTrip().then(res => setTriipList(res.tripList))
         NOTIFY.SUCCESS();
