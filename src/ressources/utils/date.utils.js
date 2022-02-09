@@ -4,12 +4,17 @@ export default class DateUtils {
 
     static FORMAT = {
         DDMMMYYYY: 'dd LLL y',
-        toSQL: 'y-LL-dd hh:mm:ss'
+        toSQL: 'y-LL-dd hh:mm:ss',
+        DD_MM_YYYY: 'dd/MM/y'
     }
 
-    static formated = (date) => {
+    static  formated = (date) => {
         return DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DDMMMYYYY);
     }
+    static  formatedDDMMYYYY = (date) => {
+        return DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DD_MM_YYYY);
+    }
+
 
     static toSql = (date) => {
         return DateTime.fromSeconds(date).setLocale("fr").toISO()
