@@ -3,7 +3,6 @@ import {useFormik} from "formik";
 import * as Yup from 'yup';
 import UserService from "../../../../services/SiteAdmin/user.service";
 import {useParams} from "react-router-dom";
-import se from "react-datepicker";
 
 
 function UpdateUserForm() {

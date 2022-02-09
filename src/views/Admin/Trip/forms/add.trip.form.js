@@ -1,17 +1,28 @@
-import React from 'react';
-import {Form, useFormik, Formik} from "formik";
+import React, {useEffect, useState} from 'react';
+import {Form, Formik, FieldArray} from "formik";
 import * as Yup from "yup";
-import AddCityTripForm from "./add.city.trip.form";
 import TripService from "../../../../services/SiteAdmin/trip.service";
 import DateUtils from "../../../../ressources/utils/date.utils";
-import FormsUtils, {FormikControl} from "../../../../ressources/utils/forms.utils";
+import FormsUtils, {FormikControl, TextError} from "../../../../ressources/utils/forms.utils";
 import {useNavigate} from "react-router-dom";
+import SiteUtils from "../../../../ressources/utils/site.utils";
+import CreatableSelect from "react-select/creatable";
+import ICON from "../../../../ressources/utils/icon.utils";
+import BlockCmn from "../../../../components/_commons/block-cmn";
+import HrCmn from "../../../../components/_commons/hr.cmn";
 
-const AddTripForm = () => {
+export default function AddTripForm() {
+
+    const [citiesList, setCitiesLiest] = useState();
+    const [countriesList, setCountriesList] = useState();
+
     const navigate = useNavigate();
-    const onAddCity = (citys) => {
-        formik.values.cities = citys
-    }
+
+
+    useEffect(() => {
+        TripService.fetchAllCountries().then(res => setCountriesList(res.countriesList))
+        TripService.fetchAllSelectCities().then(res => setCitiesLiest(res.citiesList))
+    }, [])
 
     const initialValues = {
         name: '',
@@ -21,24 +32,25 @@ const AddTripForm = () => {
         dateDebut: '',
         dateFin: '',
         cities: [],
-        image: ''
+        image: '',
     }
+
     const onSubmit = values => {
-        var data = new FormData();
-        // data.append("data",values)
-        data.append("file",values.image)
-        // data.file = values.image
-        // data.Data = values
+        // var data = new FormData();
+        // // data.append("data",values)
+        // data.append("file", values.image)
+        // // data.file = values.image
+        // // data.Data = values
 
         // console.log(data)
 
-        console.group("formfdata")
-        for(let date of data){
-            console.log(date)
-        }
-console.groupEnd()
+        // console.group("formfdata")
+        // for (let date of data) {
+        //     console.log(date)
+        // }
+        // console.groupEnd()
 
-        TripService.createTrip(data).then(res => {
+        TripService.createTrip(values).then(res => {
 
 
             console.log(res)
@@ -60,56 +72,110 @@ console.groupEnd()
         description: Yup.string().min(5, "Veuillez être plus précis !"),
         dateDebut: Yup.date().required("Veuillez indiquez la date du début !"),
         dateFin: Yup.date().required("Veuillez indiquez la date de fin !"),
-        // cities: Yup.array().min(1, "Veuillez ajouter au moins 1 étape !").required(),
-        // file: Yup.mixed().nullable().test(
-        //     "FILE_FORMAT",
-        //     FormsUtils.invalid_file_formats,
-        //     (value) => !value || (value && FormsUtils.supported_formats.includes(value?.type))
-        // )
+        cities: Yup.array(Yup.object({
+            name: Yup.string().required(FormsUtils.required),
+            country: Yup.string().required(FormsUtils.required)
+
+        })).min(1, "Veuillez ajouter au moins 1 étape !").required(),
+        image: Yup.mixed().nullable().test("FILE_FORMAT", FormsUtils.invalid_file_formats, (value) => !value || (value && FormsUtils.supported_formats.includes(value?.type)))
     })
-    const formik = useFormik({
-        initialValues, onSubmit, validationSchema
-    })
+
+    // const formik = useFormik({
+    //     initialValues, onSubmit, validationSchema
+    // })
+
     return (
         <>
 
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
                 {
-                    formik => {
+                    ({values, errors, handleBlur,touched}) => {
                         return <Form>
                             <div className="row row-cols-1 row-cols-md-2">
-                                <FormikControl className={"col mb-3 w-100"} control={"input"} type={"text"} name={"name"} label="Titre du séjour *" />
-                                <FormikControl className={"col mb-3"} control={"input"} type={"number"} name={"tickets"} label="Place disponible *" />
-                                <FormikControl className={"col mb-3"} control={"input"} type={"text"} name={"price"} label="Prix *" />
-                                <FormikControl className={"col mb-3 w-100"} control={"textarea"} rows="2" name={"description"} label="Description" />
-                                <FormikControl className={"col mb-3"} control={"date"}  name={"dateDebut"} label="Début du séjour" min={DateUtils.now()} max={formik.values.dateFin} />
-                                <FormikControl className={"col mb-3"} control={"date"} name={"dateFin"} label="Fin du séjour"  min={formik.values.dateDebut ? formik.values.dateDebut : DateUtils.now()} />
-
-
-                                <div className={`col mb-3 w-100`}>
-                                    {/*<label htmlFor="image" className="form-label">Image</label>*/}
-
-
-                                    {/*<input type="file" name="image" id="image" className="form-control"*/}
-                                    {/*       onChange={(e) => formik.setFieldValue('image', e.target.files[0])}/>*/}
-                                </div>
-                                <div className={`col mb-3 w-100 ${((formik.values.dateFin && formik.values.dateDebut) || (formik.errors.cities && formik.submitCount > 0)) && "border"}  m-0 p-0`}>
-                                    {formik.values.dateFin && formik.values.dateDebut && (
-                                        <AddCityTripForm date={{debut: formik.values.dateDebut, fin: formik.values.dateFin}}
-                                                         setCities={onAddCity}/>
-                                    //  todo: put the code here afte push on git hub
-                                    )}
-                                    <div
-                                        className={`mb-3 w-100 nav justify-content-end px-3 ${(formik.errors.cities && formik.submitCount > 0) && 'has-error'}`}>
-                                        <p>{(formik.errors.cities && formik.submitCount >= 1 && !(formik.errors.dateFin || formik.errors.dateDebut)) && formik.errors.cities}</p>
-                                        <p>{(formik.errors.cities && formik.submitCount > 0 && (formik.errors.dateFin || formik.errors.dateDebut)) && "Veuillez rensigner la date du début et celle de la fin du séjour afin de rajouter des étape !"}</p>
-                                        <input hidden type="number" name="cities" id="cities" defaultValue={formik.values.cities}/>
-                                    </div>
+                                <div className="col row row-cols-1 row-cols-md-2">
+                                    <FormikControl label="Titre du séjour *" control={"input"} className={"col mb-3 w-100"}
+                                                   type={"text"} name={"name"}/>
+                                    <FormikControl label="Place disponible *" control={"input"} className={"col mb-3"}
+                                                   type={"number"} name={"tickets"}/>
+                                    <FormikControl label="Prix *" control={"input"} className={"col mb-3"} type={"text"}
+                                                   name={"price"}/>
+                                    <FormikControl label="Description" control={"textarea"} className={"col mb-3 w-100"}
+                                                   rows="2" name={"description"}/>
+                                    <FormikControl label="Illustration du séjour" control="file" name="image"
+                                                   className={"col mb-3 w-100"}/>
+                                    <FormikControl label="Début du séjour" control={"date"} className={"col mb-3"}
+                                                   name={"dateDebut"} min={DateUtils.now()} max={values.dateFin}/>
+                                    <FormikControl label="Fin du séjour" control={"date"} className={"col mb-3"}
+                                                   name={"dateFin"}
+                                                   min={values.dateDebut ? DateUtils.addDays(values.dateDebut, 2) : DateUtils.now()}/>
                                 </div>
 
-                            </div>
-                            <div className="mb-3 w-100 nav justify-content-end">
-                                <button type="submit" className="btn btn-gold">Créer</button>
+                                <div className="col row row-cols-1 mx-auto"
+                                     disabled={!(values.dateFin && values.dateDebut)}>
+                                    <HrCmn className="d-md-none" />
+                                    <BlockCmn classname={`col w-100 mb-3 p-3`}>
+                                        <FieldArray name="cities">
+                                            {({push, remove, move, form}) => {
+                                                const {cities} = form.values
+                                                const handleAddCity = (city) => {
+                                                    let newCity = {
+                                                        name: city.label,
+                                                        country: city.country,
+                                                        description: ''
+                                                    }
+                                                    if (SiteUtils.isNumeric(city.value)) {
+                                                        newCity.id = city.value
+                                                    } else {
+                                                        newCity.isNew = true
+                                                    }
+                                                    push(newCity)
+                                                }
+                                                return (
+                                                    <>
+                                                        <h3 className="mb-3 text-decoration-underline text-end text-uppercase">Les étapes du séjour</h3>
+                                                        <div className="mb-3">
+                                                            <CreatableSelect onChange={(e) => handleAddCity(e)} options={citiesList} className="w-100" isSearchable isClearable placeholder="Ajouter une étape" onBlur={handleBlur}/>
+                                                            {(errors.cities && touched.cities) && <TextError>{errors.cities}</TextError> }
+                                                        </div>
+                                                        {cities.length > 0 && ( <HrCmn />)}
+                                                        {
+                                                            cities && cities.map((city, i) => (
+                                                                <div   key={i}>
+                                                                    <div className="row">
+                                                                        <div className="col-12 col-md-10  order-md-first row row-cols-1 row-cols-md-2">
+                                                                            <FormikControl label="Ville" control={"input"} name={`cities[${i}].name`} type="text" className={"col mb-3"} readOnly={!city.isNew}/>
+
+                                                                            { city.isNew ? ( <FormikControl label="Pays" control="select" name={`cities[${i}].country`} className={"col mb-3"} options={countriesList} readOnly={!city.isNew}/>)
+                                                                                : (<FormikControl label="Pays" control={"input"} name={`cities[${i}].country`} type="text" className={"col mb-3"} readOnly={true}/>)
+                                                                            }
+                                                                            <FormikControl label={"Description"} control={"textarea"} row={3} name={`cities[${i}].description`} className={'col w-100 mb-3'} />
+                                                                        </div>
+                                                                        <div className="col-12 d-flex btn-group justify-content-between col-md order-first flex-row flex-md-column">
+                                                                            <button type="button" className="btn btn-outline-primary" onClick={() => move(i,  i-1)} disabled={i === 0}>{ICON.NAV_UP}</button>
+                                                                            <button type="button" className="btn btn-outline-danger" onClick={() => remove(i)}>{ICON.DELETE}</button>
+                                                                            <button type="button" className="btn btn-outline-primary" onClick={() => move(i,  i+1)} disabled={i + 1 === cities.length}  >{ICON.NAV_DOWN}</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    {i + 1 < cities.length && ( <HrCmn />)}
+
+                                                                </div>
+
+
+
+                                                            ))
+                                                        }
+
+                                                    </>
+                                                )
+                                            }}
+                                        </FieldArray>
+                                    </BlockCmn>
+                                </div>
+
+
+                                <div className="mb-3 w-100 d-flex justify-content-end">
+                                    <button type="submit" className="btn btn-gold">Créer</button>
+                                </div>
                             </div>
                         </Form>
                     }
@@ -119,4 +185,4 @@ console.groupEnd()
     );
 };
 
-export default AddTripForm;
+

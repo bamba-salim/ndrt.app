@@ -34,6 +34,11 @@ $blue-300: mix(white, $blue, 40%) !default;
   }
 }
 
+div[disabled]{
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .has-error {
   color: $danger;
 
