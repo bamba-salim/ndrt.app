@@ -12,5 +12,5 @@ export default class TripService {
 
     static fetchAllCities = () => GET('fetch-all-cities')
 
-    static deleteCity = (idCity) => PUT('delete-city', {icCity: idCity})
+    static deleteCity = (idCity) => PUT('delete-city', {idCity: idCity})
 }

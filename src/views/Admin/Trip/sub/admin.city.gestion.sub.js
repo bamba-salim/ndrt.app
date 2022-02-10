@@ -15,18 +15,18 @@ function AdminCityGestionSub() {
 
     const switchAddCityBtn = () => addCity ? setAddCity(false) : setAddCity(true)
 
-    const endLink = [
-        (<>
+    const endLink = () => {
+        return (<>
             <button className="nav-link btn" onClick={switchAddCityBtn}>{ICON.ADD} Ville</button>
-        </>),
-    ]
+        </>)
+    }
 
     useEffect(() => {
         TripService.fetchAllCities().then(res => setCities(res.citiesList))
     }, [])
     return (
         <SubTpl titreProps={{titre: 'Les villes'}}>
-            <NavTpl end={endLink}/>
+            <NavTpl end={endLink()}/>
             {
                 addCity && (<>
                     < BlockCmn className="my-3 p-3 border">
@@ -36,7 +36,7 @@ function AdminCityGestionSub() {
                 </>)
             }
 
-            <ListTpl list={cities} component={AdminCityList} item_per_page={9}/>
+            <ListTpl list={cities} setList={setCities} component={AdminCityList} item_per_page={9}/>
         </SubTpl>
     );
 }
