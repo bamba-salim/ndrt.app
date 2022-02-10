@@ -1,13 +1,13 @@
 import React from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import ICON from "../../ressources/utils/icon.utils";
-import AuthService, {ShowIf} from "../../services/Routing/auth.service";
+import AuthService from "../../services/Routing/auth.service";
 
 
-const NavBar = () => {
+function NavBar() {
     const navigate = useNavigate();
 
-    function logout() {
+    const logout = () => {
         localStorage.removeItem('user');
         localStorage.setItem('info', 'Vous avez été déconnecté !')
 
@@ -33,11 +33,11 @@ const NavBar = () => {
                     </div>
 
                     <nav className="col nav justify-content-end text-end">
-                        <Link className={"nav-link active " + ShowIf(AuthService.IsAdmin)} to="/admin">Gestion du
+                        <Link className={"nav-link active " + AuthService.ShowIf(AuthService.IsAdmin)} to="/admin">Gestion du
                             site</Link>
-                        <Link className={`nav-link active ` + ShowIf(AuthService.IsUnLoggedIn)}
+                        <Link className={`nav-link active ` + AuthService.ShowIf(AuthService.IsUnLoggedIn)}
                               to="/login">{ICON.LOGIN}</Link>
-                        <Link to="#" className={`btn nav-link active ` + ShowIf(AuthService.IsLoggedIn)}
+                        <Link to="#" className={`btn nav-link active ` + AuthService.ShowIf(AuthService.IsLoggedIn)}
                               onClick={() => logout()}>{ICON.LOGOUT}</Link>
 
 

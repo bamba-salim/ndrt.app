@@ -1,52 +1,56 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import HomeView from "../../views/Site/home-view";
-
-
-import UserUpdateSubView from "../../views/Admin/User/user-update-sub-view";
-import LoginView from "../../views/Login/login-view";
 import AuthService from "./auth.service";
+
+
+
+import AdminUserSingleEditSub from "../../views/Admin/User/sub/admin.user.single.edit.sub";
+import LoginHomeView from "../../views/Login/login.home.view";
 import AdminHomeView from "../../views/Admin/admin.home.view";
-import GestionTripHomeView from "../../views/Admin/Trip/gestion.trip.home.view";
-import EditTripSubView from "../../views/Admin/Trip/edit.trip.sub.view";
-import TripListSubView from "../../views/Admin/Trip/trip.list.sub.view";
-import GestionUserHomeView from "../../views/Admin/User/gestion.user.home.view";
-import UserListSubView from "../../views/Admin/User/user.list.sub.view";
-import GestionSingleUserSubView from "../../views/Admin/User/gestion.single.user.sub.view";
-import GestionSingleTripSubView from "../../views/Admin/Trip/gestion.single.trip.sub.view";
-import UserDeleteSubView from "../../views/Admin/User/user.delete.sub.view";
-import UserSwitchRoleSubView from "../../views/Admin/User/user.switch.role.sub.view";
-import AddTripSubView from "../../views/Admin/Trip/add.trip.sub.view";
+import SiteHomeView from "../../views/Site/site.home.view";
+
+import AdminTripHomeView from "../../views/Admin/Trip/admin.trip.home.view";
+import AdminTripSingleEditSub from "../../views/Admin/Trip/sub/admin.trip.single.edit.sub";
+import TripListSubView from "../../views/Admin/Trip/sub/admin.trip.list.sub";
+import AdminUserHomeView from "../../views/Admin/User/admin.user.home.view";
+import AdminUserListSub from "../../views/Admin/User/sub/admin.user.list.sub";
+import AdminUserSingleHomeSub from "../../views/Admin/User/sub/admin.user.single.home.sub";
+import AdminTripSingleHomeSub from "../../views/Admin/Trip/sub/admin.trip.single.home.sub";
+import AdminUserSingleDeleteSub from "../../views/Admin/User/sub/admin.user.single.delete.sub";
+import AdminUserSingleSwitchRoleSub from "../../views/Admin/User/sub/admin.user.single.switch.role.sub";
+import AdminTripAddSub from "../../views/Admin/Trip/sub/admin.trip.add.sub";
+import AdminTripSingleDeleteSub from "../../views/Admin/Trip/sub/admin.trip.single.delete.sub";
+import AdminCityGestionSub from "../../views/Admin/Trip/sub/admin.city.gestion.sub";
 
 
-export default class RouterService extends Component {
-    render() {
-        return (
-            <Routes>
-                <Route path="/" element={<HomeView/>}/>
-                <Route path="/login" element={<LoginView access={AuthService.IsUnLoggedIn}/>}/>
+export default function RouterService () {
+    return (
+        <Routes>
+            <Route path="/" element={<SiteHomeView />}/>
+            <Route path="/login" element={<LoginHomeView access={AuthService.IsUnLoggedIn}/>}/>
 
-                {/* admin routes */}
-                <Route path="/admin" element={<AdminHomeView access={AuthService.IsAdmin}/>}/>
+            {/* admin routes */}
+            <Route path="/admin" element={<AdminHomeView access={AuthService.IsAdmin}/>}/>
 
-                <Route path="/gestion-trip" element={<GestionTripHomeView/>}>
-                    <Route path="" element={<TripListSubView/>}/>
-                    <Route path=":id" element={<GestionSingleTripSubView/>}/>
-                    <Route path=":id/edit" element={<EditTripSubView/>}/>
-                    {/* todo: ajouter trip et city */}
-                    <Route path="add" element={<AddTripSubView />}/>
-                </Route>
-                <Route path="/gestion-user" element={<GestionUserHomeView access={AuthService.IsAdmin}/>}>
-                    <Route path="" element={<UserListSubView/>}/>
-                    <Route path=":idUser" element={<GestionSingleUserSubView/>}/>
-                    <Route path=":idUser/edit" element={<UserUpdateSubView/>}/>
-                    <Route path=":idUser/delete" element={<UserDeleteSubView/>}/>
-                    <Route path=":idUser/switch-role" element={<UserSwitchRoleSubView/>}/>
-                </Route>
+            <Route path="/gestion-trip" element={<AdminTripHomeView access={AuthService.IsAdmin}/>}>
+                <Route path="" element={<TripListSubView/>}/>
+                <Route path=":id" element={<AdminTripSingleHomeSub/>}/>
+                <Route path=":id/edit" element={<AdminTripSingleEditSub/>}/>
+                <Route path=":id/delete" element={<AdminTripSingleDeleteSub/>}/>
+                <Route path="add-trip" element={<AdminTripAddSub />}/>
+                {/*list cities */}
+                <Route path="cities" element={<AdminCityGestionSub/>}/>
+            </Route>
+            <Route path="/gestion-user" element={<AdminUserHomeView access={AuthService.IsAdmin}/>}>
+                <Route path="" element={<AdminUserListSub/>}/>
+                <Route path=":idUser" element={<AdminUserSingleHomeSub/>}/>
+                <Route path=":idUser/edit" element={<AdminUserSingleEditSub/>}/>
+                <Route path=":idUser/delete" element={<AdminUserSingleDeleteSub/>}/>
+                <Route path=":idUser/switch-role" element={<AdminUserSingleSwitchRoleSub/>}/>
+            </Route>
 
-            </Routes>
-        );
-    }
+        </Routes>
+    );
 }
 
 export const MenuLink = () => {

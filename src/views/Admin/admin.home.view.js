@@ -1,23 +1,19 @@
-import React, {Component} from 'react';
-import ViewsTpl from "../../components/_template/views-tpl";
+import React from 'react';
+import ViewsTpl from "../../components/_template/views.tpl";
 import {Link, Outlet} from "react-router-dom";
-import NavigationTpl from "../../components/_template/navigation.tpl";
-import {ViewTitre} from "../../components/atoms/view-titre";
+import NavTpl from "../../components/_template/nav.tpl";
 
-class AdminHomeView extends Component {
-    render() {
-        return (
-            <ViewsTpl classname="container" titre={'Gestion du Site'} {...this.props}>
-                <ViewTitre titre={'Gestion du Site'}/>
-                <NavigationTpl>
-                    <Link className="nav-link" to={`/admin`}>Admin Home</Link>
-                    <Link className="nav-link" to={`/gestion-trip`}>Séjours</Link>
-                    <Link className="nav-link" to={`/gestion-user`}>Utilisateurs</Link>
-                </NavigationTpl>
-                <Outlet/>
-            </ViewsTpl>
-        );
-    }
+function AdminHomeView ({access}) {
+    return (
+        <ViewsTpl className="container" titre={'Gestion du Site'} access={access} >
+            <NavTpl>
+                <Link className="nav-link" to={`/admin`}>Admin Home</Link>
+                <Link className="nav-link" to={`/gestion-trip`}>Séjours</Link>
+                <Link className="nav-link" to={`/gestion-user`}>Utilisateurs</Link>
+            </NavTpl>
+            <Outlet/>
+        </ViewsTpl>
+    );
 }
 
 export default AdminHomeView;

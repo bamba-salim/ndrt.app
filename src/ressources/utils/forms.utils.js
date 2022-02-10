@@ -135,9 +135,11 @@ export function CreatSelect (props){
 
 }
 
-export const TextError = (props) => (
-    <div className="text-danger d-flex justify-content-between text-end gap-0">
-        <p>{props.children}</p><p> {ICON.WARNING}</p>
-    </div>
-)
+export function TextError ({children}) {
+    return (
+        <div className="text-danger d-flex justify-content-between text-end gap-0">
+            <p>{children}</p><p> {ICON.WARNING}</p>
+        </div>
+    )
+}
 

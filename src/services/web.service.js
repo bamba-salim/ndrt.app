@@ -1,9 +1,9 @@
 import axios from "axios";
-import {sessionUser} from "./Routing/auth.service";
+import AuthService from "./Routing/auth.service";
 
 export const ws = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`,
-    headers: {'session_user': sessionUser}
+    headers: {'session_user': AuthService.sessionUser}
 
 })
 

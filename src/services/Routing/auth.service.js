@@ -1,27 +1,22 @@
-export const sessionUser = localStorage.getItem('user');
-export const IsLoggedIn = sessionUser != null;
-export const IsUnLoggedIn = !IsLoggedIn;
-export const User = IsLoggedIn ? JSON.parse(sessionUser) : {}
-export let IsAdmin = IsLoggedIn ? User.isAdmin : false
+export default class AuthService {
 
-class AuthService {
-
-    static IsAdmin = IsLoggedIn ? User.isAdmin : false
     static sessionUser = localStorage.getItem('user');
-    static IsLoggedIn = sessionUser != null;
-    static IsUnLoggedIn = !IsLoggedIn;
-    static User = IsLoggedIn ? JSON.parse(sessionUser) : {}
 
-    static IsUserOrAdmin = (idUser) => idUser === User.id || IsAdmin
+    static IsLoggedIn = this.sessionUser != null;
+
+    static IsUnLoggedIn = !this.IsLoggedIn;
+
+    static User = this.IsLoggedIn ? JSON.parse(this.sessionUser) : {}
+
+    static IsAdmin = this.IsLoggedIn ? this.User.isAdmin : false
+
+    static IsUserOrAdmin = (idUser) => idUser === this.User.id || this.IsAdmin
 
     static ShowIf = (condition) => !condition ? "d-none" : "";
 
 }
 
-export default AuthService
 
-export const ShowIf = (condition) => {
-    return !condition ? "d-none" : "";
-}
+
 
 

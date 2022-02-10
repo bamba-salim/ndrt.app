@@ -1,32 +1,18 @@
 import {GET, POST, PUT} from "../web.service";
 
 export default class UserService {
-    static fetchAllUsers = () => {
-        return GET('fetch-all-user')
-    }
 
-    static fetchUser(idUser) {
-        return GET(`fetch-user/${idUser}`)
-    }
+    static fetchAllUsers = () => GET('fetch-all-user');
 
-    static updateUser(userData) {
-        return POST('update-user', {userDto: userData}) // todo: a revoir
-    }
+    static fetchUser = (idUser) => GET(`fetch-user/${idUser}`);
 
-    static signIn(userData) {
-        console.log(userData)
-        return POST('sign-in', {loginFormBean: userData})
-    }
+    static updateUser = (userData) => POST('update-user', {userDto: userData}); // todo: a revoir
 
-    static signUp(values) {
-        return POST('sign-up',{signUpFormBean: values})
-    }
+    static signIn = (userData) => POST('sign-in', {loginFormBean: userData});
 
-    static deleteUser(idUser) {
-        return PUT('delete-user',{idUser: idUser})
-    }
+    static signUp = (values) => POST('sign-up', {signUpFormBean: values});
 
-    static switchUserRole(idUser, isAdmin) {
-        return POST('switch-user-role', {idUser: idUser, role: isAdmin})
-    }
+    static deleteUser = (idUser) => PUT('delete-user', {idUser: idUser});
+
+    static switchUserRole = (idUser, isAdmin) => POST('switch-user-role', {idUser: idUser, role: isAdmin});
 }

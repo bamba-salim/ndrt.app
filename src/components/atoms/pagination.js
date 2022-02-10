@@ -1,7 +1,7 @@
 import React from 'react';
 import ICON from "../../ressources/utils/icon.utils";
 
-const Pagination = ({itemPerPage, totalItems, changePage, currentPage}) => {
+function Pagination({itemPerPage, totalItems, changePage, currentPage}) {
 
     const page_numbers = []
 
@@ -40,7 +40,6 @@ const Pagination = ({itemPerPage, totalItems, changePage, currentPage}) => {
         </div>
     );
 
-
-};
+}
 
 export default Pagination;
