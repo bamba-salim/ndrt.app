@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {useNavigate} from "react-router-dom";
 import AdminCityEditForm from "../_forms/admin.city.edit.form";
 import TripService from "../../../../services/SiteAdmin/trip.service";
 import {ToastTpl} from "../../../../components/atoms/toast.tpl";

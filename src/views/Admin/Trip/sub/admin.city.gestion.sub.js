@@ -36,7 +36,7 @@ function AdminCityGestionSub() {
                 </>)
             }
 
-            <ListTpl list={cities} setList={setCities} component={AdminCityList} item_per_page={9}/>
+            <ListTpl list={cities} setList={setCities} component={AdminCityList} item_per_page={9} />
         </SubTpl>
     );
 }

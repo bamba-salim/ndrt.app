@@ -19,7 +19,6 @@ export const GET = async (url) => {
 }
 
 export const POST = (url, data) => {
-    console.log(data)
     return ws.post(url, {data}, { headers: { 'Content-Type': 'application/x-www-form-urlencoded'} })
         .then(res => {
             if (res.data.error) console.log(res.data)

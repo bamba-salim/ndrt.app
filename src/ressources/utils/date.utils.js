@@ -8,25 +8,22 @@ export default class DateUtils {
         DD_MM_YYYY: 'dd/MM/y'
     }
 
-    static  formated = (date) => {
-        return DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DDMMMYYYY);
-    }
-    static  formatedDDMMYYYY = (date) => {
-        return DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DD_MM_YYYY);
-    }
+    static  formated = (date) => DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DDMMMYYYY);
+
+    static  formatedDDMMYYYY = (date) => DateTime.fromSQL(date).setLocale("fr").toFormat(this.FORMAT.DD_MM_YYYY);
 
 
-    static toSql = (date) => {
-        return DateTime.fromSeconds(date).setLocale("fr").toISO()
-    }
 
-    static now = () => {
-        return DateTime.now().setLocale("fr").toFormat("y-LL-dd");
-    }
+    static toSql = (date) => DateTime.fromSeconds(date).setLocale("fr").toISO()
 
 
-    static addDays(date, days) {
-        return DateTime.fromISO(date).plus({days: days}).toFormat("y-LL-dd")
-    }
+    static NowSql = () => DateTime.now().toSQL()
+
+    static now = () => DateTime.now().setLocale("fr").toFormat("y-LL-dd");
+
+
+
+    static addDays = (date, days) => DateTime.fromISO(date).plus({days: days}).toFormat("y-LL-dd")
+
 
 }
