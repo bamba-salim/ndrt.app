@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import TripService from "../../../../services/SiteAdmin/trip.service";
+import TripService from "../../../../services/WebService/trip.service";
 import ListTpl from "../../../../components/_template/list.tpl";
 import AdminCityList from "../_template/admin.city.list";
 import SubTpl from "../../../../components/_template/sub.tpl";

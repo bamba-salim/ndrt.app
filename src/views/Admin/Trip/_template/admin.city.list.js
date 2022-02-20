@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import AdminCityEditForm from "../_forms/admin.city.edit.form";
-import TripService from "../../../../services/SiteAdmin/trip.service";
+import TripService from "../../../../services/WebService/trip.service";
 import {ToastTpl} from "../../../../components/atoms/toast.tpl";
 
 function AdminCityList({list, setList}) {

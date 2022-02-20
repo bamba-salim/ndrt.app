@@ -15,7 +15,6 @@ function TripFiltredList({list}) {
 
                     <div className="card rounded-0 h-100 p-0 m-0">
                         <TripSingleListCardSection key={i} trip={trip}/>
-
                     </div>
                 </div>
                 ))}

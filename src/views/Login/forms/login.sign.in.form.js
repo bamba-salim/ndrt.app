@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import UserService from "../../../services/SiteAdmin/user.service";
+import UserService from "../../../services/WebService/user.service";
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import LodashUtils from "../../../ressources/utils/lodash.utils";

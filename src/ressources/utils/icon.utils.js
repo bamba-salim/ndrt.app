@@ -8,7 +8,7 @@ import {
     faUser,
     faTimes,
     faChevronRight,
-    faChevronLeft, faPen, faTrash, faUserShield, faChevronDown, faChevronUp, faExclamationCircle, faPlus
+    faChevronLeft, faPen, faTrash, faUserShield, faChevronDown, faChevronUp, faExclamationCircle, faPlus, faCog
 } from "@fortawesome/free-solid-svg-icons";
 
 export default class ICON {
@@ -28,6 +28,7 @@ export default class ICON {
     static ADMIN = (<FontAwesomeIcon icon={faUserShield}/>)
     static WARNING = (<FontAwesomeIcon icon={faExclamationCircle}/>)
     static ADD = (<FontAwesomeIcon icon={faPlus}/>)
+    static SETTINGS = (<FontAwesomeIcon icon={faCog} />)
 }
 
 

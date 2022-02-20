@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import AdminUserEditForm from "../_forms/admin.user.edit.form";
 import SubTpl from "../../../../components/_template/sub.tpl";
 import {useParams} from "react-router-dom";
-import UserService from "../../../../services/SiteAdmin/user.service";
+import UserService from "../../../../services/WebService/user.service";
 
 function AdminUserSingleEditSub () {
     const {idUser} = useParams();

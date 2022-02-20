@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Form, Formik, FieldArray} from "formik";
 import * as Yup from "yup";
-import TripService from "../../../../services/SiteAdmin/trip.service";
+import TripService from "../../../../services/WebService/trip.service";
 import DateUtils from "../../../../ressources/utils/date.utils";
 import FormsUtils, {FormikControl, TextError} from "../../../../ressources/utils/forms.utils";
 import {useNavigate} from "react-router-dom";

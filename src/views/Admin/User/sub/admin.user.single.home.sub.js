@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import NavTpl from "../../../../components/_template/nav.tpl";
 import SubTpl from "../../../../components/_template/sub.tpl";
-import UserService from "../../../../services/SiteAdmin/user.service";
+import UserService from "../../../../services/WebService/user.service";
 import AuthService from "../../../../services/Routing/auth.service";
 import ICON from "../../../../ressources/utils/icon.utils";
 

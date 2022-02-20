@@ -1,7 +1,7 @@
 import React from 'react';
 import SubTpl from "../../../../components/_template/sub.tpl";
 import {useParams} from "react-router-dom";
-import UserService from "../../../../services/SiteAdmin/user.service";
+import UserService from "../../../../services/WebService/user.service";
 
 function AdminUserSingleDeleteSub () {
 

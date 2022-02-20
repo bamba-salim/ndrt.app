@@ -1,5 +1,5 @@
 import axios from "axios";
-import AuthService from "./Routing/auth.service";
+import AuthService from "../Routing/auth.service";
 
 export const ws = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`,
@@ -9,8 +9,8 @@ export const ws = axios.create({
 
 export default ws
 
-export const GET = async (url) => {
-    return await ws.get(url)
+export const GET = async (url, params = {}) => {
+    return await ws.get(url,params)
         .then(res => {
             if (res.data.error) console.log(res.data)
             return res.data

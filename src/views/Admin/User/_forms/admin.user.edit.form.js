@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import UserService from "../../../../services/SiteAdmin/user.service";
+import UserService from "../../../../services/WebService/user.service";
 import {useParams} from "react-router-dom";
 
 

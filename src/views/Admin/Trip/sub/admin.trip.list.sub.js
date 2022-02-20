@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import NOTIFY from "../../../../components/atoms/toast.tpl";
-import TripService from "../../../../services/SiteAdmin/trip.service";
+import TripService from "../../../../services/WebService/trip.service";
 import ListTpl from "../../../../components/_template/list.tpl";
 import AdminTripsList from "../_template/admin.trips.list";
 import SubTpl from "../../../../components/_template/sub.tpl";
 
-function TripListSubView() {
+function AdminTripListSubView() {
 
     const [trips, setTrips] = useState([]);
 
@@ -64,4 +64,4 @@ function TripListSubView() {
 
 }
 
-export default TripListSubView;
+export default AdminTripListSubView;

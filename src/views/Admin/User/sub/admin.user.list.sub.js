@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import UserService from "../../../../services/SiteAdmin/user.service";
+import UserService from "../../../../services/WebService/user.service";
 import ListTpl from "../../../../components/_template/list.tpl";
 import AdminUsersList from "../_template/admin.users.list";
 import SubTpl from "../../../../components/_template/sub.tpl";

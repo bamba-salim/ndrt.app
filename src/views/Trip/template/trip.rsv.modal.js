@@ -3,7 +3,7 @@ import {ToastTpl} from "../../../components/atoms/toast.tpl";
 import {Form, Formik} from "formik";
 import * as Yup from "yup";
 import {FormikControl} from "../../../ressources/utils/forms.utils";
-import TripService from "../../../services/SiteAdmin/trip.service";
+import TripService from "../../../services/WebService/trip.service";
 import {useNavigate} from "react-router-dom";
 
 function TripRsvModal({closeModal, data}) {

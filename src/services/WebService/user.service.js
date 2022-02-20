@@ -1,4 +1,4 @@
-import {GET, POST, PUT} from "../web.service";
+import {GET, POST, PUT} from "./web.service";
 
 export default class UserService {
 
