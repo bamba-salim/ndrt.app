@@ -18,6 +18,8 @@ import AdminTripListSubView from "../../views/Admin/Trip/sub/admin.trip.list.sub
 import AdminCityGestionSub from "../../views/Admin/Trip/sub/admin.city.gestion.sub";
 import AdminTripAddSub from "../../views/Admin/Trip/sub/admin.trip.add.sub";
 
+import AdminRsvHomeView from "../../views/Admin/Reservation/admin.rsv.home.view";
+import AdminRsvListSub from "../../views/Admin/Reservation/sub/admin.rsv.list.sub";
 
 import AdminTripSingleEditSub from "../../views/Admin/Trip/sub/admin.trip.single.edit.sub"; // todo: modal ?
 import AdminTripSingleHomeSub from "../../views/Admin/Trip/sub/admin.trip.single.home.sub"; // todo: modal ?
@@ -25,7 +27,9 @@ import AdminUserSingleEditSub from "../../views/Admin/User/sub/admin.user.single
 import AdminUserSingleDeleteSub from "../../views/Admin/User/sub/admin.user.single.delete.sub"; // todo: modal
 import AdminUserSingleSwitchRoleSub from "../../views/Admin/User/sub/admin.user.single.switch.role.sub"; // todo: modal
 import AdminTripSingleDeleteSub from "../../views/Admin/Trip/sub/admin.trip.single.delete.sub"; // todo: modal
-import LoginHomeView from "../../views/Login/login.home.view";{/* // todo: modal */}
+import LoginHomeView from "../../views/Login/login.home.view";
+
+{/* // todo: modal */}
 
 
 export default function RouterService () {
@@ -38,6 +42,9 @@ export default function RouterService () {
 
             {/* admin routes */}
             <Route path="/admin" element={<AdminHomeView access={AuthService.IsAdmin}/>}/>
+            <Route path="/gestion-reservations" element={<AdminRsvHomeView access={AuthService.IsAdmin}/>} >
+                <Route path="" element={<AdminRsvListSub />}/>
+            </Route>
 
             <Route path="/gestion-trip" element={<AdminTripHomeView access={AuthService.IsAdmin}/>}>
                 <Route path="" element={<AdminTripListSubView />} />

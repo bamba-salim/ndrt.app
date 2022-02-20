@@ -10,6 +10,8 @@ function AdminHomeView ({access}) {
                 <Link className="nav-link" to={`/admin`}>Admin Home</Link>
                 <Link className="nav-link" to={`/gestion-trip`}>Séjours</Link>
                 <Link className="nav-link" to={`/gestion-user`}>Utilisateurs</Link>
+                <Link className="nav-link" to={`/gestion-reservations`}>Réservations</Link>
+
             </NavTpl>
             <Outlet/>
         </ViewsTpl>

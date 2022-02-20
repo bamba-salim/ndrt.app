@@ -22,4 +22,6 @@ export default class TripService {
 
     static fetchRSV = idRSV => GET(`fetch-reservation/${idRSV}`)
 
+    static fetchAllRsv = () => GET("fetch-all-reservations")
+
 }

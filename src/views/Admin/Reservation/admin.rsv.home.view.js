@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link, Outlet} from "react-router-dom";
 import ViewsTpl from "../../../components/_template/views.tpl";
 import NavTpl from "../../../components/_template/nav.tpl";
+import {Link, Outlet} from "react-router-dom";
 
-function AdminUserHomeView ({access}){
+function AdminRsvHomeView(props) {
     return (
-        <ViewsTpl className="container" titre={"Gestion Utilisateurs"} access={access}>
+        <ViewsTpl {...props} titre="Getsion des Réservations" className="container">
             <NavTpl>
                 <Link className="nav-link" to={`/admin`}>Retour</Link>
                 <Link className="nav-link" to={``}>Home</Link>
@@ -13,6 +13,6 @@ function AdminUserHomeView ({access}){
             <Outlet/>
         </ViewsTpl>
     );
-};
+}
 
-export default AdminUserHomeView;
+export default AdminRsvHomeView;

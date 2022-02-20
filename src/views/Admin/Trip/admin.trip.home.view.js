@@ -7,7 +7,8 @@ function AdminTripHomeView({access}) {
     return (
         <ViewsTpl className="container" titre={`Gestion séjours`} access={access}>
             <NavTpl>
-                <Link className="nav-link" to={``}>Séjours</Link>
+                <Link className="nav-link" to={`/admin`}>Retour</Link>
+                <Link className="nav-link" to={``}>Home</Link>
                 <Link className="nav-link" to={`cities`}>Villes</Link>
                 <Link className="nav-link" to={`add-trip`}>Ajouter circuit</Link>
             </NavTpl>
