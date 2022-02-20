@@ -4,7 +4,7 @@ export default class TripService {
 
     static fetchAllTrip = () => GET('fetch-all-trip');
 
-    static createTrip = (values) => POST('create-trip', {tripDto: values});
+    static createTrip = values => POST('create-trip', {tripDto: values});
 
     static fetchAllCountries = () => GET('fetch-all-select-countries');
 
@@ -12,7 +12,9 @@ export default class TripService {
 
     static fetchAllCities = () => GET('fetch-all-cities')
 
-    static deleteCity = (idCity) => PUT('delete-city', {idCity: idCity})
+    static deleteCity = idCity => PUT('delete-city', {idCity: idCity})
 
-    static fetchFiltredTrips = (filters) => POST('fetch-trip-with-filters',{filters})
+    static fetchFiltredTrips = filters => POST('fetch-trip-with-filters',{filters})
+
+    static addRSV = values => POST('add-new-rsv', {rsv: values});
 }

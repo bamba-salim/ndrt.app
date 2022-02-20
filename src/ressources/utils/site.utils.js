@@ -13,4 +13,9 @@ export default class SiteUtils {
         return (!str || str.length === 0 );
     }
 
+    static join_cities = (cities) => {
+        var finale = [];
+        cities.map(city => finale.push(city.name))
+        return finale.join(' -> ')
+    }
 }

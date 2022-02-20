@@ -13,6 +13,18 @@ $blue-300: mix(white, $blue, 40%) !default;
   background-color: $blue-300;
 }
 
+.bg{
+  &-gold {
+    background-color: $gold;
+  }
+}
+
+.text {
+  &-gold {
+    color: $gold;
+  }
+}
+
 .card {
   &-akb {
     border-radius: 0;

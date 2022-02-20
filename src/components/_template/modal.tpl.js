@@ -1,22 +1,12 @@
 import React from 'react';
+import {Modal} from "react-bootstrap";
 
-function ModalTpl({children}) {
-
-    const modelStyle = {
-        display: this.props.show ? 'block' : 'none',
-        backgroundColor: 'rgb(0,0,0,0.8)'
-    }
+function ModalTpl({isOpen, component: Component, closeModal, data, label, size = 'md'}) {
 
     return (
-        <div>
-            <div className="modal show fade" style={modelStyle}>
-                <div className="modal-dialog modal-dialog-centered">
-                    <div className="modal-content">
-                        {children}
-                    </div>
-                </div>
-            </div>
-        </div>
+        <Modal show={isOpen} onHide={closeModal} backdrop="static" centered size={size} dialogClassName="rounded-0">
+            <Component closeModal={closeModal} data={data}  />
+        </Modal>
     );
 }
 

@@ -21,6 +21,7 @@ import AdminUserSingleSwitchRoleSub from "../../views/Admin/User/sub/admin.user.
 import AdminTripAddSub from "../../views/Admin/Trip/sub/admin.trip.add.sub";
 import AdminTripSingleDeleteSub from "../../views/Admin/Trip/sub/admin.trip.single.delete.sub";
 import AdminCityGestionSub from "../../views/Admin/Trip/sub/admin.city.gestion.sub";
+import UserHomeView from "../../views/User/user.home.view";
 
 
 export default function RouterService () {
@@ -28,6 +29,8 @@ export default function RouterService () {
         <Routes>
             <Route path="/" element={<SiteHomeView />}/>
             <Route path="/login" element={<LoginHomeView access={AuthService.IsUnLoggedIn}/>}/>
+
+            <Route path="/mon-esapce" element={<UserHomeView/>}/>
 
             {/* admin routes */}
             <Route path="/admin" element={<AdminHomeView access={AuthService.IsAdmin}/>}/>

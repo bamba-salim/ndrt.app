@@ -2,15 +2,12 @@ import React from 'react';
 import ICON from "../../../../ressources/utils/icon.utils";
 import DateUtils from "../../../../ressources/utils/date.utils";
 import {useNavigate} from "react-router-dom";
+import SiteUtils from "../../../../ressources/utils/site.utils";
 
 function AdminTripsList ({list}) {
     const navigate = useNavigate();
 
-    const join_cities = (cities) => {
-        var finale = [];
-        cities.map(city => finale.push(city.name))
-        return finale.join(' -> ')
-    }
+
 
     return (
         <>
@@ -22,7 +19,7 @@ function AdminTripsList ({list}) {
                             <div className="col mb-1">Fin: {DateUtils.formatedDDMMYYYY(trip.dateEnd)}</div>
                             <div className="col mb-1 w-100 py-1">Etapes:
                                 <div className="border w-100 p-1">
-                                    <em >{join_cities(trip.cities)}</em>
+                                    <em >{SiteUtils.join_cities(trip.cities)}</em>
                                 </div>
                             </div>
                             <div className="col mb-1">Prix: {trip.reservations.price}</div>

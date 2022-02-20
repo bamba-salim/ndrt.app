@@ -1,10 +1,10 @@
 export class TripFilterBean {
 
-    name = null;
-    dateDebut = null;
-    dateFin = null;
-    minPrice = null;
-    maxPrice  = null;
+    name = '';
+    dateDebut = "";
+    dateFin = '';
+    minPrice = '';
+    maxPrice  = '';
     cities = [];
 
 }

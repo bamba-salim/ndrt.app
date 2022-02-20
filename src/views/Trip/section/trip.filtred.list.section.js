@@ -5,30 +5,45 @@ import TripService from "../../../services/SiteAdmin/trip.service";
 import TripFiltredList from "../template/trip.filtred.list";
 import {TripFilterBean} from "../../../ressources/bean/trip.filter.bean";
 import DateUtils from "../../../ressources/utils/date.utils";
+import {Form, Formik} from "formik";
+import * as Yup from 'yup'
+import {FormikControl} from "../../../ressources/utils/forms.utils";
 
 function TripFiltredListSection(props) {
     const [filtredTrips, setFiltredTrips] = useState([]);
-    const [filters, setFilters] = useState(new TripFilterBean());
+    const filters = new TripFilterBean();
+
+
     useEffect(() => {
-        filters.cities = [2];
+        TripService.fetchFiltredTrips(filters).then(res => setFiltredTrips(res.list));
+    }, [filters])
 
-        // todo get filtred List
-        TripService.fetchFiltredTrips(filters).then(res => {
-            console.log(res)
-            setFiltredTrips(res.list)
-        })
+    let validation = Yup.object( {
+        name: Yup.string('').nullable()
+    })
 
-    }, [])
 
     return (
 
-        <BlockCmn className="row my-3">
-            <div className="col-12 col-md-3 border">
-                {/* filters nav */}
+        <BlockCmn className="row grid my-3 p-0">
+            <div className="col-12 col-lg-3 col-xl-2 border d-none">
+                <Formik initialValues={filters}
+                        validationSchema={validation}
+                        onSubmit={(values) => TripService.fetchFiltredTrips(filters).then(res => {
+                            console.log(res)
+                            setFiltredTrips(res.list)
+                        })}
+                >
+                    <Form>
+                        <FormikControl control="input" name="name" label="nom"  />
+                        <button type="submit">Envoyer</button>
+                    </Form>
+                </Formik>
+
+
             </div>
-            <div className="col border">
-                <ListTpl list={filtredTrips} component={TripFiltredList}
-                         emptyMessage={"Aucun séjours n'a été trouvé !"}/>
+            <div className="col-12 p-0">
+                <ListTpl list={filtredTrips} component={TripFiltredList} emptyMessage={"Aucun séjours n'a été trouvé !"}/>
             </div>
         </BlockCmn>
     );
