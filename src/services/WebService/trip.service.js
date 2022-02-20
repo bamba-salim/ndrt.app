@@ -20,4 +20,6 @@ export default class TripService {
 
     static fetchUserRSVs = idUser => GET(`fetch-user-reservations/${idUser}`)
 
+    static fetchRSV = idRSV => GET(`fetch-reservation/${idRSV}`)
+
 }

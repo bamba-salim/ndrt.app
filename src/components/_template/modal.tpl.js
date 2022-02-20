@@ -1,7 +1,7 @@
 import React from 'react';
 import {Modal} from "react-bootstrap";
 
-function ModalTpl({isOpen, component: Component, closeModal, data, label, size = 'md'}) {
+function ModalTpl({isOpen, component: Component, closeModal, data, size = 'md'}) {
 
     return (
         <Modal show={isOpen} onHide={closeModal} backdrop="static" centered size={size} dialogClassName="rounded-0">
