@@ -13,16 +13,17 @@ import HrCmn from "../../../../components/_commons/hr.cmn";
 
 export default function AdminTripAddForm() {
 
-    const [citiesList, setCitiesLiest] = useState();
+    const [citiesList, setCitiesLiest] = useState([]);
 
-    const [countriesList, setCountriesList] = useState();
+    const [countriesList, setCountriesList] = useState([]);
 
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        TripService.fetchAllCountries().then(res => setCountriesList(res.countriesList))
-        TripService.fetchAllSelectCities().then(res => setCitiesLiest(res.citiesList))
+        let ac = new AbortController()
+        TripService.fetchAllCountries().then(res => setCountriesList(res.countriesList)).finally(() => ac.abort())
+        TripService.fetchAllSelectCities().then(res => setCitiesLiest(res.citiesList)).finally(() => ac.abort())
     }, [])
 
     const initialValues = {

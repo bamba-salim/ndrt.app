@@ -15,7 +15,8 @@ function TripFiltredListSection() {
 
 
     useEffect(() => {
-        TripService.fetchFiltredTrips(filters).then(res => setFiltredTrips(res.list));
+        let ac = new AbortController()
+        TripService.fetchFiltredTrips(filters).then(res => setFiltredTrips(res.list)).finally(() => ac.abort());
     }, [filters])
 
     let validation = Yup.object( {

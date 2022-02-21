@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import NOTIFY from "../../../../components/atoms/toast.tpl";
 import TripService from "../../../../services/WebService/trip.service";
 import ListTpl from "../../../../components/_template/list.tpl";
-import AdminTripsList from "../_template/admin.trips.list";
+import AdminTripsList from "../section/admin.trips.list";
 import SubTpl from "../../../../components/_template/sub.tpl";
 
 function AdminTripListSubView() {
@@ -17,6 +17,7 @@ function AdminTripListSubView() {
     const [nextBtn, setNextBtn] = useState('');
 
     useEffect(() => {
+        let ac = new AbortController()
         TripService.fetchAllTrip().then(res => {
             setPassTrips(res.trips.past);
             setCurrentTrips(res.trips.current);
@@ -24,7 +25,7 @@ function AdminTripListSubView() {
             setTrips(res.trips.current)
         })
         NOTIFY.SUCCESS();
-
+        return ac.abort()
     }, [])
 
 

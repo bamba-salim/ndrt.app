@@ -13,8 +13,9 @@ function UserHomeView() {
     const [reservations, setReservations] = useState([])
 
     useEffect(() => {
-        UserService.fetchUser(user.id).then(res => setUser(res.user))
-        TripService.fetchUserRSVs(user.id).then(res => setReservations(res.rsvs))
+        let ac = new AbortController()
+        UserService.fetchUser(user.id).then(res => setUser(res.user)).finally(() => ac.abort())
+        TripService.fetchUserRSVs(user.id).then(res => setReservations(res.rsvs)).finally(() => ac.abort())
     }, [])
 
     return (

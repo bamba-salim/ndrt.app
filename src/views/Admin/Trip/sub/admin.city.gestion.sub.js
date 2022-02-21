@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import TripService from "../../../../services/WebService/trip.service";
 import ListTpl from "../../../../components/_template/list.tpl";
-import AdminCityList from "../_template/admin.city.list";
+import AdminCityList from "../section/admin.city.list";
 import SubTpl from "../../../../components/_template/sub.tpl";
 import NavTpl from "../../../../components/_template/nav.tpl";
 import ICON from "../../../../ressources/utils/icon.utils";
@@ -10,8 +10,8 @@ import AdminCityAddForm from "../_forms/admin.city.add.form";
 
 function AdminCityGestionSub() {
 
-    const [cities, setCities] = useState();
-    const [addCity, setAddCity] = useState()
+    const [cities, setCities] = useState([]);
+    const [addCity, setAddCity] = useState() // todo: ???
 
     const switchAddCityBtn = () => addCity ? setAddCity(false) : setAddCity(true)
 
@@ -22,7 +22,8 @@ function AdminCityGestionSub() {
     }
 
     useEffect(() => {
-        TripService.fetchAllCities().then(res => setCities(res.citiesList))
+        let ac = new AbortController()
+        TripService.fetchAllCities().then(res => setCities(res.citiesList)).finally(() => ac.abort())
     }, [])
     return (
         <SubTpl titreProps={{titre: 'Les villes'}}>

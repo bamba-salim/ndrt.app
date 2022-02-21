@@ -14,5 +14,5 @@ export default class UserService {
 
     static deleteUser = (idUser) => PUT('delete-user', {idUser: idUser});
 
-    static switchUserRole = (idUser, isAdmin) => POST('switch-user-role', {idUser: idUser, role: isAdmin});
+    static switchUserRole = (idUser, isAdmin) => POST('switch-user-role', {user : {idUser: idUser, role: isAdmin}});
 }

@@ -1,21 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import UserService from "../../../../services/WebService/user.service";
-import ListTpl from "../../../../components/_template/list.tpl";
-import AdminUsersList from "../_template/admin.users.list";
+import AdminUserSinlgeListSection from "../section/admin.user.sinlge.list.section";
 import SubTpl from "../../../../components/_template/sub.tpl";
+import ListSingleTpl from "../../../../components/_template/list.single.tpl";
 
 function AdminUserListSub () {
 
-    const [users, setUsers] = useState();
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        UserService.fetchAllUsers().then(res => setUsers(res.userList))
+        let ac = new AbortController()
+        UserService.fetchAllUsers().then(res => setUsers(res.userList)).finally(() => ac.abort())
     }, [])
 
     return (
         <div>
             <SubTpl titreProps={{titre: 'Les utilisateurs'}}>
-                <ListTpl component={AdminUsersList} list={users}/>
+                <ListSingleTpl component={AdminUserSinlgeListSection} list={users}/>
             </SubTpl>
         </div>
     );

@@ -6,10 +6,11 @@ import AdminRsvSingleListSection from "../section/admin.rsv.single.list.section"
 
 function AdminRsvListSub() {
 
-    const [rsvs, setRSVs] = useState()
+    const [rsvs, setRSVs] = useState([])
 
     useEffect(() => {
-        TripService.fetchAllRsv().then(res => setRSVs(res.rsvs))
+        let ac = new AbortController()
+        TripService.fetchAllRsv().then(res => setRSVs(res.rsvs)).finally(() => ac.abort())
     }, [])
 
 

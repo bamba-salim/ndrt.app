@@ -6,7 +6,7 @@ import {ToastTpl} from "../../../../components/atoms/toast.tpl";
 function AdminCityList({list, setList}) {
     const [isEdit, setIsEdit] = useState(false);
     const [isDel, setIsDel] = useState(false);
-    const [countries, setCountries] = useState();
+    const [countries, setCountries] = useState([]);
     const switchShowEdit = (id) => {
         setIsDel(false)
         isEdit === id ? setIsEdit(false) : setIsEdit(id)
@@ -16,7 +16,8 @@ function AdminCityList({list, setList}) {
         isDel === id ? setIsDel(false) : setIsDel(id)
     }
     useEffect(() => {
-        TripService.fetchAllCountries().then(res => setCountries(res.countriesList))
+        let ac = new AbortController()
+        TripService.fetchAllCountries().then(res => setCountries(res.countriesList)).finally(() => ac.abort())
     }, [])
 
     function _delete(id) {

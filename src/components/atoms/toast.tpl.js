@@ -22,6 +22,17 @@ export default class NOTIFY {
     }
 }
 
+export class InitNotif {
+
+    static SetItem = ({item, message}) => localStorage.setItem(item, message)
+
+    static SUCCESS = (message) => this.SetItem({item:'success', message: message})
+
+    static ERROR = (message) => this.SetItem({item:'error', message: message})
+
+
+}
+
 export class ToastTpl {
     static SUCCESS = (message) => {
 

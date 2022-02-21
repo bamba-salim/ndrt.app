@@ -6,7 +6,8 @@ function UserSingleTripModal({data , closeModal}) {
     const [rsv, setRSV] = useState({})
 
     useEffect(() => {
-        TripService.fetchRSV(data.id).then(res => setRSV(res.rsv))
+        let ac = new AbortController()
+        TripService.fetchRSV(data.id).then(res => setRSV(res.rsv)).finally(() => ac.abort())
     }, [data])
 
     return (

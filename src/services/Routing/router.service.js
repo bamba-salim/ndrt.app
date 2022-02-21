@@ -24,12 +24,10 @@ import AdminRsvListSub from "../../views/Admin/Reservation/sub/admin.rsv.list.su
 import AdminTripSingleEditSub from "../../views/Admin/Trip/sub/admin.trip.single.edit.sub"; // todo: modal ?
 import AdminTripSingleHomeSub from "../../views/Admin/Trip/sub/admin.trip.single.home.sub"; // todo: modal ?
 import AdminUserSingleEditSub from "../../views/Admin/User/sub/admin.user.single.edit.sub";  // todo: modal ?
-import AdminUserSingleDeleteSub from "../../views/Admin/User/sub/admin.user.single.delete.sub"; // todo: modal
-import AdminUserSingleSwitchRoleSub from "../../views/Admin/User/sub/admin.user.single.switch.role.sub"; // todo: modal
-import AdminTripSingleDeleteSub from "../../views/Admin/Trip/sub/admin.trip.single.delete.sub"; // todo: modal
-import LoginHomeView from "../../views/Login/login.home.view";
 
-{/* // todo: modal */}
+import AdminUserSingleDeleteSub from "../../views/Admin/User/sub/admin.user.single.delete.sub"; // todo: modal
+import AdminTripSingleDeleteSub from "../../views/Admin/Trip/sub/admin.trip.single.delete.sub"; // todo: modal
+import LoginHomeView from "../../views/Login/login.home.view"; {/* // todo: modal */}
 
 
 export default function RouterService () {
@@ -59,7 +57,6 @@ export default function RouterService () {
                 <Route path=":idUser" element={<AdminUserSingleHomeSub />} />
                 <Route path=":idUser/edit" element={<AdminUserSingleEditSub />} />
                 <Route path=":idUser/delete" element={<AdminUserSingleDeleteSub />} /> {/* // todo: modal */}
-                <Route path=":idUser/switch-role" element={<AdminUserSingleSwitchRoleSub />} /> {/* // todo: modal */}
             </Route>
 
         </Routes>

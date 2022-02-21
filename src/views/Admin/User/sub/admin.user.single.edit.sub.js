@@ -6,11 +6,12 @@ import UserService from "../../../../services/WebService/user.service";
 
 function AdminUserSingleEditSub () {
     const {idUser} = useParams();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
 
 
     useEffect(() => {
-        UserService.fetchUser(idUser).then(res => setUser(res.user))
+        let ac = new AbortController()
+        UserService.fetchUser(idUser).then(res => setUser(res.user)).finally(() => ac.abort())
     }, [idUser])
 
 
