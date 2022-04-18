@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import LodashUtils from "../../../ressources/utils/lodash.utils";
-import UserService from "../../../services/WebService/user.service";
 import * as Yup from "yup";
 import {useFormik} from "formik";
+import LoginService from "../../../services/WebService/login.service";
 
 function LoginSignUpForm() {
     const [loginErrors, setLoginErrors] = useState([]);
@@ -11,7 +11,7 @@ function LoginSignUpForm() {
         setLoginErrors([])
 
         if (LodashUtils.isEmpty(loginErrors)) setLoginErrors([])
-        UserService.signUp(values).then(res => {
+        LoginService.signUp(values).then(res => {
             if (res.ERROR) setLoginErrors(res.ERROR.data)
             if (res.SUCCESS) {
                 localStorage.setItem('user', JSON.stringify(res.user))

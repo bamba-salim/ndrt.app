@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
-import NavTpl from "../../../../components/_template/nav.tpl";
 import SubTpl from "../../../../components/_template/sub.tpl";
 import UserService from "../../../../services/WebService/user.service";
 import AuthService from "../../../../services/Routing/auth.service";

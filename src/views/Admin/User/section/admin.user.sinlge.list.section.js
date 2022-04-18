@@ -3,7 +3,7 @@ import DateUtils from "../../../../ressources/utils/date.utils";
 import {useNavigate} from "react-router-dom";
 import ICON from "../../../../ressources/utils/icon.utils";
 import ModalTpl from "../../../../components/_template/modal.tpl";
-import AdminUserSingleSwitchRoleModal from "./admin.user.single.switch.role.modal";
+import AdminUserSingleSwitchRoleModal from "../modal/admin.user.single.switch.role.modal";
 
 function AdminUserSinlgeListSection({item, i}) {
     const navigate = useNavigate();

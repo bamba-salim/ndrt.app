@@ -8,10 +8,7 @@ function AdminHomeView ({access}) {
         <ViewsTpl className="container" titre={'Gestion du Site'} access={access} >
             <NavTpl>
                 <Link className="nav-link" to={`/admin`}>Admin Home</Link>
-                <Link className="nav-link" to={`/gestion-trip`}>Séjours</Link>
                 <Link className="nav-link" to={`/gestion-user`}>Utilisateurs</Link>
-                <Link className="nav-link" to={`/gestion-reservations`}>Réservations</Link>
-
             </NavTpl>
             <Outlet/>
         </ViewsTpl>
