@@ -1,9 +1,10 @@
 import React, {useEffect} from 'react';
-import NavBar from "../atoms/nav-bar";
+import NavBar from "../atoms/navbar";
 import {useNavigate} from "react-router-dom";
 import NOTIFY from "../atoms/toast.tpl";
 import {ViewTitre} from "../atoms/view.titre";
 import SiteUtils from "../../ressources/utils/site.utils";
+import Footer from "../atoms/footer";
 
 
 function ViewsTpl({access = null, target = '/', className = '', children, titre = null}) {
@@ -11,26 +12,26 @@ function ViewsTpl({access = null, target = '/', className = '', children, titre 
 
 
     useEffect(() => {
-        SiteUtils.title(titre)
+        SiteUtils.title(titre ? titre : SiteUtils.siteNAme)
 
         NOTIFY.SUCCESS();
         NOTIFY.INFO()
     }, [titre])
     if (access != null ? !access : false) navigate(target);
 
-    return (<>
-        <header>
-            <NavBar/>
-        </header>
-        <main className={`py-3 ${className}`}>
-            {titre && <ViewTitre titre={titre}/>}
+    return (
+        <div className="main-container">
+            <div className="content-wrap">
+                <NavBar/>
+            <main className={`${className}`}>
+                {titre && <ViewTitre titre={titre}/>}
 
-            {children}
-        </main>
-        <footer>
-            FOOTER
-        </footer>
-    </>);
+                {children}
+            </main>
+            </div>
+            <Footer/>
+        </div>
+    );
 }
 
 export default ViewsTpl;

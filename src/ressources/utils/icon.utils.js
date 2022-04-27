@@ -19,6 +19,7 @@ import {
     faCog,
     faToggleOff, faToggleOn, faEye
 } from "@fortawesome/free-solid-svg-icons";
+import {faFacebookF, faInstagram, faTwitter} from "@fortawesome/free-brands-svg-icons";
 
 export default class ICON {
     static LOGIN = (<FontAwesomeIcon icon={faSignInAlt}/>);
@@ -41,6 +42,9 @@ export default class ICON {
     static SWITCH_OFF = (<FontAwesomeIcon icon={faToggleOff} />)
     static SWITCH_ON = (<FontAwesomeIcon icon={faToggleOn} />);
     static VIEW = (<FontAwesomeIcon icon={faEye} />);
+    static FACEBOOK = (<FontAwesomeIcon icon={faFacebookF} />);
+    static TWITTER = (<FontAwesomeIcon icon={faTwitter} />);
+    static INSTAGRAM = (<FontAwesomeIcon icon={faInstagram} />);
 }
 
 

@@ -1,11 +1,22 @@
 import React from 'react';
 import ViewsTpl from "../../components/_template/views.tpl";
-
-
+import image from '../../ressources/assets/img/test.jpg'
+import {ProdcutHomeGallerySection, ProdcutHomeGallerySlider} from "../Product/section/prodcut.home.gallery.section";
 
 function SiteHomeView() {
     return (
-        <ViewsTpl className="container" titre={`Bienvenue sur ${process.env.REACT_APP_SITE_NAME}`}   >
+        <ViewsTpl className="container-lg p-0">
+            <ProdcutHomeGallerySection/>
+            <ProdcutHomeGallerySlider/>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem iure nobis quos soluta. Adipisci, eveniet,
+            facere. Architecto eos exercitationem itaque neque, pariatur vitae voluptate? Beatae exercitationem incidunt
+            natus nihil soluta?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem iure nobis quos soluta. Adipisci, eveniet,
+            facere. Architecto eos exercitationem itaque neque, pariatur vitae voluptate? Beatae exercitationem incidunt
+            natus nihil soluta?
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem iure nobis quos soluta. Adipisci, eveniet,
+            facere. Architecto eos exercitationem itaque neque, pariatur vitae voluptate? Beatae exercitationem incidunt
+            natus nihil soluta?
         </ViewsTpl>
     );
 }

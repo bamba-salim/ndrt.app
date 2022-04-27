@@ -1,4 +1,3 @@
-
 @import "node_modules/bootstrap/scss/bootstrap";
 
 
@@ -9,11 +8,37 @@ $danger: #dc3545;
 
 $blue: #0d6efd;
 $blue-300: mix(white, $blue, 40%) !default;
+
+
+body, #root {
+  height: 100%;
+}
+
+footer {
+  margin-top: 3rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;;
+}
+
+.content-wrap {
+  flex: 1;
+}
+
+
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
 .bg-blue {
   background-color: $blue-300;
 }
 
-.bg{
+.bg {
   &-gold {
     background-color: $gold;
   }
@@ -46,7 +71,7 @@ $blue-300: mix(white, $blue, 40%) !default;
   }
 }
 
-div[disabled]{
+div[disabled] {
   pointer-events: none;
   opacity: 0.5;
 }
@@ -56,7 +81,7 @@ div[disabled]{
 
   .form-control, .form-select {
     @extend .is-invalid;
-    outline: none!important;
+    outline: none !important;
   }
 }
 
@@ -126,4 +151,46 @@ div[disabled]{
   to {
     transform: rotate(360deg);
   }
+}
+
+.image {
+  position: relative;
+  overflow: hidden;
+  object-fit: cover;
+  padding-bottom: 100%;
+  width: 100%;
+
+  &-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    ;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+    @extend .g-4;
+
+    & .Link, p, a {
+      @extend .h6, .fw-bolder, .text-decoration-none, .text-gold, .py-3, .w-75, .mx-auto, .text-uppercase;
+      background: rgba(256, 256, 256, 0.9);
+      &:hover {
+        @extend .text-white;
+        background: rgba(256, 256, 256, 0.25);
+      }
+    }
+  }
+
+  img {
+    @extend .position-absolute;
+    //position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+
+
 }

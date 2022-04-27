@@ -24,5 +24,6 @@ export default class DateUtils {
 
     static addDays = (date, days) => DateTime.fromISO(date).plus({days: days}).toFormat("y-LL-dd")
 
+    static year = () => DateTime.now().setLocale("fr").toFormat("y");
 
 }

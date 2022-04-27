@@ -2,7 +2,7 @@
 export default class SiteUtils {
 
     static title = (page) => {
-        document.title = `${page} | ${process.env.REACT_APP_SITE_NAME}`
+        document.title = `${page} | ${this.siteNAme}`
     }
 
     static isNumeric(int) {
@@ -18,4 +18,5 @@ export default class SiteUtils {
         cities.map(city => finale.push(city.name))
         return finale.join(' -> ')
     }
+    static siteNAme = process.env.REACT_APP_SITE_NAME;
 }
