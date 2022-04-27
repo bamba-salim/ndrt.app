@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import AuthService from "../auth.service";
+import AuthService from "../Auth/auth.service";
 
 import SiteHomeView from "../../views/Site/site.home.view";
 
@@ -19,7 +19,11 @@ import AdminUserSingleEditSub from "../../views/Admin/User/sub/admin.user.single
 
 import AdminUserSingleDeleteSub from "../../views/Admin/User/sub/admin.user.single.delete.sub"; // todo: modal
 
-import LoginHomeView from "../../views/Login/login.home.view"; {/* // todo: modal */}
+import LoginHomeView from "../../views/Login/login.home.view";
+import CategoryHomeView from "../../views/Product/category.home.view";
+import ProductListSub from "../../views/Product/sub/product.list.sub";
+import CategoryListSub from "../../views/Product/sub/category.list.sub";
+import ProductHomeView from "../../views/Product/product.home.view"; {/* // todo: modal */}
 
 
 export default function RouterService () {
@@ -29,6 +33,13 @@ export default function RouterService () {
             <Route path="/login" element={<LoginHomeView access={AuthService.IsUnLoggedIn} />} /> {/* // todo: modal */}
 
             <Route path="/mon-espace" element={<UserHomeView />} />
+            <Route path="/category" element={<CategoryHomeView />} >
+                <Route path="" element={<CategoryListSub/>} />
+                <Route path="all" element={<ProductListSub/>} />
+                <Route path=":idCategory" element={<ProductListSub />} />
+            </Route>
+            <Route path="/product/:idProduct" element={<ProductHomeView/> }/>
+
 
             {/* admin routes */}
             <Route path="/admin" element={<AdminHomeView access={AuthService.IsAdmin}/>}/>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import AuthService from "../auth.service";
+import AuthService from "../Auth/auth.service";
 
 export const ws = axios.create({
     baseURL: `${process.env.REACT_APP_API_URL}`,

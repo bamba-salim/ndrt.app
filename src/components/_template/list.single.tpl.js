@@ -13,7 +13,8 @@ function ListSingleTpl({
                            setList = null,
                            pagination = true,
                            children = null,
-                           childreClassName = ""
+                           childreClassName = "",
+                           grid = ''
                        }) {
 
     const [current_page, setCurrent_page] = useState(1);
@@ -29,19 +30,17 @@ function ListSingleTpl({
     return (
         <BlockCmn className={`my-3 ${className}`}>
             {titre && (<>
-                <div className="card-header  rounded-0 bg-white d-flex justify-content-between pt-3 pb-0">
+                <div className="card-header rounded-0 bg-white d-flex justify-content-between pt-3 pb-0">
                     <h3>{titre}</h3>
                     <span className="d-block align-top">{list.length} résultat(s)</span>
                 </div>
             </>)}
-            <div className="card-body border-0 rounded-0">
-                {list.length > 0 && (<>
-                    {current_items.map((item, i) => (<Component item={item} key={i}/>))}
+            <div className={`card-body border-0 rounded-0 p-0`}>
+                <div className={`${grid} p-0`}>
+                    {list.length > 0 && (<>{current_items.map((item, i) => (<Component item={item} key={i}/>))}</>)}
+                </div>
 
-                    {pagination && (
-                        <Pagination itemPerPage={item_per_page} totalItems={list.length} changePage={changePage}
-                                    currentPage={current_page}/>)}
-                </>)}
+                {pagination && (<Pagination itemPerPage={item_per_page} totalItems={list.length} changePage={changePage} currentPage={current_page}/>)}
                 {list.length === 0 && (<h3>{emptyMessage}</h3>)}
             </div>
             {children && (<>

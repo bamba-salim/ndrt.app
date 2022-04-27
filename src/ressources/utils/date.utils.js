@@ -16,11 +16,9 @@ export default class DateUtils {
 
     static toSql = (date) => DateTime.fromSeconds(date).setLocale("fr").toISO()
 
-
     static NowSql = () => DateTime.now().toSQL()
 
     static now = () => DateTime.now().setLocale("fr").toFormat("y-LL-dd");
-
 
     static addDays = (date, days) => DateTime.fromISO(date).plus({days: days}).toFormat("y-LL-dd")
 

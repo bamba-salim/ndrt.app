@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import ICON from "../../ressources/utils/icon.utils";
-import AuthService from "../../services/auth.service";
+import AuthService from "../../services/Auth/auth.service";
 import logo from '../../ressources/assets/img/logo.svg'
 
 function NavBar() {
