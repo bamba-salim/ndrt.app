@@ -7,7 +7,7 @@ import SiteUtils from "../../ressources/utils/site.utils";
 import Footer from "../atoms/footer";
 
 
-function ViewsTpl({access = null, target = '/', className = '', children, titre = null}) {
+function ViewsTpl({access = null, target = '/', className = '', children, titre = null, showTitre= true}) {
     const navigate = useNavigate();
 
 
@@ -24,7 +24,7 @@ function ViewsTpl({access = null, target = '/', className = '', children, titre 
             <div className="content-wrap">
                 <NavBar/>
             <main className={`${className}`}>
-                {titre && <ViewTitre titre={titre}/>}
+                {(titre && showTitre) && <ViewTitre titre={titre}/>}
 
                 {children}
             </main>

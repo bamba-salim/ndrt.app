@@ -1,6 +1,6 @@
 import React from 'react';
 import {Routes, Route} from "react-router-dom";
-import AuthService from "../Auth/auth.service";
+import AuthService from "../Admin/auth.service";
 
 import SiteHomeView from "../../views/Site/site.home.view";
 

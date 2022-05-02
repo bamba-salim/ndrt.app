@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ViewsTpl from "../../components/_template/views.tpl";
-import AuthService from "../../services/Auth/auth.service";
+import AuthService from "../../services/Admin/auth.service";
 import BlockCmn from "../../components/_commons/block.cmn";
 import UserService from "../../services/WebService/user.service";
 

@@ -7,7 +7,6 @@ function SiteHomeView() {
     return (
         <ViewsTpl className="container-lg p-0">
             <ProdcutHomeGallerySection/>
-            <ProdcutHomeGallerySlider/>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem iure nobis quos soluta. Adipisci, eveniet,
             facere. Architecto eos exercitationem itaque neque, pariatur vitae voluptate? Beatae exercitationem incidunt
             natus nihil soluta?

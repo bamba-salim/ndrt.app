@@ -3,7 +3,7 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import LodashUtils from "../../../ressources/utils/lodash.utils";
 import {useNavigate} from "react-router-dom";
-import LoginService from "../../../services/WebService/login.service";
+import AuthService from "../../../services/Admin/auth.service";
 
 
 function LoginSignInForm() {
@@ -14,7 +14,7 @@ function LoginSignInForm() {
     const onSubmit = values => {
 
         if(LodashUtils.isEmpty(loginErrors))  setLoginErrors([])
-        LoginService.signIn(values).then(res => {
+        AuthService.signIn(values).then(res => {
             if (res.ERROR) setLoginErrors(res.ERROR.message)
             if (res.SUCCESS){
                 localStorage.setItem('success', res.SUCCESS.description)

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import SubTpl from "../../../../components/_template/sub.tpl";
 import UserService from "../../../../services/WebService/user.service";
-import AuthService from "../../../../services/Auth/auth.service";
+import AuthService from "../../../../services/Admin/auth.service";
 import ICON from "../../../../ressources/utils/icon.utils";
 
 function AdminUserSingleHomeSub() {

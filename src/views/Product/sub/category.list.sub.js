@@ -10,7 +10,7 @@ function CategoryListSub() {
 
     const [categoriesList, setCategoriesList] = useState([])
     useEffect(() => {
-        setCategoriesList(ProductService.MOOD)
+        setCategoriesList(ProductService.MOODS)
     }, [])
 
     return (

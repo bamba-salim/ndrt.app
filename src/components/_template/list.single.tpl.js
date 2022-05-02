@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import BlockCmn from "../_commons/block.cmn";
 import Pagination from "../atoms/pagination";
-import HrCmn from "../_commons/hr.cmn";
 
 function ListSingleTpl({
                            titre = '',
